@@ -1,0 +1,21 @@
+Host parents
+        HostName xxxx.freeboxos.fr
+        Port 4242
+        IdentityFile ~/.ssh/rsa_keys/priv/id_rsa_parents
+        User nderousseaux
+
+Host portable-papa
+    HostName 192.168.1.28
+    User cderousseaux
+    IdentityFile ~/.ssh/rsa_keys/priv/id_rsa_portable_papa
+    ProxyJump parents
+
+Host fixe-papa
+    HostName 192.168.1.33
+    User cderousseaux
+    ProxyJump parents
+
+Host portable-vagno
+        Hostname X.X.X.X
+        User vagno
+        IdentityFile ~/.ssh/rsa_keys/priv/id_rsa_portable_vagno

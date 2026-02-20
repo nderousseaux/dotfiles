@@ -30,34 +30,3 @@ Host p4
   IdentityFile ~/.ssh/rsa_keys/priv/id_rsa_p4_childs
   ProxyJump jade
   UseKeychain yes
-
-Host cfau-test
-  User root
-  IdentityFile ~/.ssh/rsa_keys/priv/id_rsa_p4_childs
-  ProxyJump jade
-  UseKeychain yes
-
-Host cfau-web1
-  User root
-  IdentityFile ~/.ssh/rsa_keys/priv/id_rsa_p4_childs
-  ProxyJump jade
-  UseKeychain yes
-
-Host cfau-test2
-  User root
-  IdentityFile ~/.ssh/rsa_keys/priv/id_rsa_p4_childs
-  ProxyJump jade
-  UseKeychain yes
-
-Host cfau-test-db
-  User root
-  IdentityFile ~/.ssh/rsa_keys/priv/id_rsa_p4_childs
-  ProxyJump jade
-  UseKeychain yes
-
-Host cle-prod-db.u-strasbg.fr
-  User root
-  IdentityFile ~/.ssh/rsa_keys/priv/id_rsa_p4_childs
-  ProxyJump jade
-  UseKeychain yes
-

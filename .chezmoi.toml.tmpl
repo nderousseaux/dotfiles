@@ -1,0 +1,10 @@
+# chezmoi configuration
+# This file is a template that is rendered on `chezmoi init`.
+
+[data]
+{{- $name := promptStringOnce . "name" "Nom complet" "Nathanaël Derousseaux" }}
+{{- $email := promptStringOnce . "email" "Email personnel" "n.derousseaux@icloud.com" }}
+{{- $workEmail := promptStringOnce . "workEmail" "Email pro (laisser vide si aucun)" "" }}
+    name = {{ $name | quote }}
+    email = {{ $email | quote }}
+    workEmail = {{ $workEmail | quote }}

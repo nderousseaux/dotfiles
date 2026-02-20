@@ -1,48 +1,86 @@
-# My configuration
+# dotfiles
 
-This the folder which configure my dev environment on my mac.
+Mon environnement de développement, géré par [chezmoi](https://www.chezmoi.io/).
 
-`install.sh` is the script to install all the configuration.
+## Installation rapide
 
-## Script overview 
-The script does the following:
-- Update all configurations files with colors defined in `colors.json`.
-- Install xcode command line tools if not installed.
-- Install `homebrew` if not installed.
-- Install and configure `hyper` terminal.
-- Install and configure `zsh` shell with `oh-my-zsh`.
-- Configure `ssh` client.
-- Install and configure `git`.
-- Install and configure `vim` editor.
-- Install and configure `tmux` terminal multiplexer.
+### Nouvelle machine (one-liner)
+```bash
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply nderousseaux
+```
 
-## Git config
+### Depuis le repo (si SSH configuré)
+```bash
+chezmoi init git@github.com:nderousseaux/dotfiles.git
+chezmoi apply
+```
 
-### Git aliases
+## Ce qui est géré
 
-- **yolo**: Commit staged changes with a random message from [whatthecommit.com](https://whatthecommit.com).
-- **install-hooks**: Copy Git hooks from `$HOME/.config/git/template/hooks` to the current repo, set permissions, and confirm.
-- **work-email**: Set Git user email to work address (`n.derousseaux@unistra.fr`).
-- **perso-email**: Set Git user email to personal address (`n.derousseaux@icloud.com`).
+| Fichier | Description |
+|---------|------------|
+| `.zshrc` | Shell config (oh-my-zsh, aliases, PATH) — templaté darwin/linux |
+| `.gitconfig` | Config git (aliases, hooks, LFS) — templaté nom/email |
+| `.tmux.conf` | Tmux (mouse, vi-mode, auto-SSH split) |
+| `.vimrc` | Vim (raccourcis, thème, auto-pairs) |
+| `.ssh/config` | Config SSH (perso, git, pro) |
+| `.config/git/` | Gitignore global + hooks (emoji commits) |
+| `.oh-my-zsh/custom/themes/sober.zsh-theme` | Thème zsh custom |
 
-### Commit category
-Here are the commit categories and their prefixes:
+## Scripts automatiques
 
-- **📦 base:** Base setup and initial configuration.
-- **✨ feat:** New features or functionality.
-- **🎨 design:** UI/UX and design changes.
-- **🐛 fix:** Bug fixes.
-- **🧪 test:** Adding or updating tests.
-- **🏗️ build:** Build system or dependencies.
-- **🧱 struct:** Project structure changes.
-- **📚 doc:** Documentation updates.
-- **🔧 internal:** Internal changes and maintenance.
-- **⚡️ perf:** Performance improvements.
-- **🚜 refactor:** Code refactoring.
-- **✏️ typo:** Typo corrections.
-- **🚧 wip:** WIP commits.
-- **📝 meta:** Meta changes (e.g., README, changelog).
-- **⚙️ config:** Configuration changes.
+- `run_once_install-packages.sh` — Installe Homebrew/apt, oh-my-zsh, plugins zsh, TPM, vim-plug, outils CLI
 
-Use these prefixes at the start of your commit messages to categorize changes.
-An emoji will be automatically added based on the prefix.
+## Templates
+
+Les fichiers `.tmpl` sont traités par chezmoi selon l'OS :
+- **macOS** : Homebrew paths, Xcode includes, colima SSH
+- **Linux** : apt packages, `~/.local/bin`
+
+## Commandes utiles
+
+```bash
+chezmoi diff          # voir les changements à appliquer
+chezmoi apply         # appliquer les configs
+chezmoi update        # pull + apply
+chezmoi edit ~/.zshrc # éditer un fichier source
+chezmoi cd            # aller dans le repo source
+```
+
+## Structure
+
+```
+.
+├── .chezmoi.toml.tmpl                          # Config chezmoi (nom, email)
+├── .chezmoiignore                              # Fichiers ignorés par chezmoi
+├── dot_zshrc.tmpl                              # → ~/.zshrc
+├── dot_gitconfig.tmpl                          # → ~/.gitconfig
+├── dot_tmux.conf                               # → ~/.tmux.conf
+├── dot_vimrc                                   # → ~/.vimrc
+├── private_dot_ssh/
+│   ├── config.tmpl                             # → ~/.ssh/config
+│   └── config.d/
+│       ├── perso                               # → ~/.ssh/config.d/perso
+│       ├── git                                 # → ~/.ssh/config.d/git
+│       └── pro                                 # → ~/.ssh/config.d/pro
+├── dot_config/
+│   └── git/
+│       ├── ignore                              # → ~/.config/git/ignore
+│       └── template/hooks/
+│           └── executable_prepare-commit-msg   # → git hook (emoji commits)
+├── dot_oh-my-zsh/
+│   └── custom/themes/
+│       └── sober.zsh-theme                     # → thème oh-my-zsh
+├── run_once_install-packages.sh.tmpl           # Script d'installation auto
+└── README.md
+```
+
+## Convention de nommage chezmoi
+
+| Préfixe | Effet |
+|---------|-------|
+| `dot_` | Remplacé par `.` |
+| `private_` | Permissions `0600` |
+| `executable_` | Permissions `0755` |
+| `run_once_` | Script exécuté une seule fois |
+| `.tmpl` | Template Go (conditions OS, variables) |
