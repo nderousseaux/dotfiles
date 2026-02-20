@@ -1,86 +1,79 @@
-# dotfiles
+# 🏠 Dotfiles
 
-Mon environnement de développement, géré par [chezmoi](https://www.chezmoi.io/).
+Mes fichiers de configuration, gérés avec [chezmoi](https://chezmoi.io/).
 
-## Installation rapide
+## Contenu
 
-### Nouvelle machine (one-liner)
+| Fichier | Description |
+|---|---|
+| `.zshrc` | Configuration Zsh + Oh My Zsh |
+| `.gitconfig` | Configuration Git (aliases, pull rebase, etc.) |
+| `.ssh/config` | Configuration SSH (GitHub, etc.) |
+| `.vimrc` | Configuration Vim |
+| `.tmux.conf` | Configuration tmux (préfixe `C-a`, navigation vim) |
+| `.config/starship.toml` | Prompt Starship minimaliste |
+| `.Brewfile` | Packages Homebrew |
+| `Library/.../Code/User/settings.json` | Settings VS Code |
+
+## Installation sur une nouvelle machine
+
+### 1. Installer chezmoi et appliquer les dotfiles
+
 ```bash
-sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply nderousseaux
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply n.derousseaux
 ```
 
-### Depuis le repo (si SSH configuré)
+> Remplacer `n.derousseaux` par ton nom d'utilisateur GitHub si le repo est hébergé sous un autre nom.
+
+### 2. Ce qui se passe automatiquement
+
+1. **Homebrew** est installé (si absent)
+2. **Tous les packages** du Brewfile sont installés
+3. **Oh My Zsh** est installé (si absent)
+4. **Tous les dotfiles** sont déployés à leur emplacement
+
+## Mise à jour
+
 ```bash
-chezmoi init git@github.com:nderousseaux/dotfiles.git
+chezmoi update
+```
+
+## Modifier un fichier
+
+```bash
+# Éditer via chezmoi (recommandé)
+chezmoi edit ~/.zshrc
+
+# Voir les différences avant d'appliquer
+chezmoi diff
+
+# Appliquer les changements
 chezmoi apply
 ```
 
-## Ce qui est géré
-
-| Fichier | Description |
-|---------|------------|
-| `.zshrc` | Shell config (oh-my-zsh, aliases, PATH) — templaté darwin/linux |
-| `.gitconfig` | Config git (aliases, hooks, LFS) — templaté nom/email |
-| `.tmux.conf` | Tmux (mouse, vi-mode, auto-SSH split) |
-| `.vimrc` | Vim (raccourcis, thème, auto-pairs) |
-| `.ssh/config` | Config SSH (perso, git, pro) |
-| `.config/git/` | Gitignore global + hooks (emoji commits) |
-| `.oh-my-zsh/custom/themes/sober.zsh-theme` | Thème zsh custom |
-
-## Scripts automatiques
-
-- `run_once_install-packages.sh` — Installe Homebrew/apt, oh-my-zsh, plugins zsh, TPM, vim-plug, outils CLI
-
-## Templates
-
-Les fichiers `.tmpl` sont traités par chezmoi selon l'OS :
-- **macOS** : Homebrew paths, Xcode includes, colima SSH
-- **Linux** : apt packages, `~/.local/bin`
-
-## Commandes utiles
+## Ajouter un nouveau fichier
 
 ```bash
-chezmoi diff          # voir les changements à appliquer
-chezmoi apply         # appliquer les configs
-chezmoi update        # pull + apply
-chezmoi edit ~/.zshrc # éditer un fichier source
-chezmoi cd            # aller dans le repo source
+chezmoi add ~/.config/quelque-chose
 ```
 
-## Structure
+## Structure du repo
 
 ```
 .
-├── .chezmoi.toml.tmpl                          # Config chezmoi (nom, email)
-├── .chezmoiignore                              # Fichiers ignorés par chezmoi
-├── dot_zshrc.tmpl                              # → ~/.zshrc
-├── dot_gitconfig.tmpl                          # → ~/.gitconfig
-├── dot_tmux.conf                               # → ~/.tmux.conf
-├── dot_vimrc                                   # → ~/.vimrc
-├── private_dot_ssh/
-│   ├── config.tmpl                             # → ~/.ssh/config
-│   └── config.d/
-│       ├── perso                               # → ~/.ssh/config.d/perso
-│       ├── git                                 # → ~/.ssh/config.d/git
-│       └── pro                                 # → ~/.ssh/config.d/pro
+├── .chezmoi.toml.tmpl              # Config chezmoi (nom, email)
+├── .chezmoiignore                  # Fichiers ignorés
+├── dot_zshrc                       # → ~/.zshrc
+├── dot_gitconfig.tmpl              # → ~/.gitconfig
+├── dot_vimrc                       # → ~/.vimrc
+├── dot_tmux.conf                   # → ~/.tmux.conf
+├── dot_Brewfile                    # → ~/.Brewfile
 ├── dot_config/
-│   └── git/
-│       ├── ignore                              # → ~/.config/git/ignore
-│       └── template/hooks/
-│           └── executable_prepare-commit-msg   # → git hook (emoji commits)
-├── dot_oh-my-zsh/
-│   └── custom/themes/
-│       └── sober.zsh-theme                     # → thème oh-my-zsh
-├── run_once_install-packages.sh.tmpl           # Script d'installation auto
-└── README.md
+│   └── starship.toml               # → ~/.config/starship.toml
+├── private_dot_ssh/
+│   └── config                      # → ~/.ssh/config
+├── private_Library/...
+│   └── settings.json               # → ~/Library/.../Code/User/settings.json
+├── run_once_before_01-install-packages.sh
+└── run_once_before_10-install-ohmyzsh.sh
 ```
-
-## Convention de nommage chezmoi
-
-| Préfixe | Effet |
-|---------|-------|
-| `dot_` | Remplacé par `.` |
-| `private_` | Permissions `0600` |
-| `executable_` | Permissions `0755` |
-| `run_once_` | Script exécuté une seule fois |
-| `.tmpl` | Template Go (conditions OS, variables) |

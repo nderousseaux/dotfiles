@@ -1,39 +1,102 @@
-syntax on
-set mouse=a    " Enable mouse support in all modes
+" ==============================================================================
+" Configuration Vim
+" ==============================================================================
 
+" --- Général ---
+set nocompatible
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8
+set backspace=indent,eol,start
+set hidden
+set laststatus=2
+set showcmd
+set showmode
+set wildmenu
+set wildmode=list:longest,full
+set history=1000
 
-"""""""""""""""" Shortuts """""""""""""
-nnoremap <C-s> :w<CR> " Save file with Ctrl + s
-nnoremap <C-q> :q<CR> " Quit with Ctrl + q
-nnoremap <C-a> ggVG " Select all with Ctrl + a
-nnoremap <C-z> u " Undo with Ctrl + z
-nnoremap <C-y> <C-r> " Redo with Ctrl + y
-nnoremap <Tab> >> " Indent with Tab
-nnoremap <S-Tab> <<
-vnoremap <Tab> >gv
-vnoremap <S-Tab> <gv
-
-"""""""""""""""" Theme """"""""""""""""
+" --- Interface ---
+set number
+set relativenumber
+set cursorline
+set scrolloff=8
+set sidescrolloff=8
+set signcolumn=yes
 set colorcolumn=80
-highlight ColorColumn ctermbg=black guibg=#222222
-set textwidth=80
+set ruler
+set title
 
-""""""""""""" Indentation """""""""""""
-set tabstop=4 " Number of spaces that a <Tab> counts for
-set shiftwidth=4 " Number of spaces to use for each step of (auto)indent
-set expandtab   " Use spaces instead of tabs
+" --- Recherche ---
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
 
-"""""""""""""" Copying """""""""""""
-" Enable system clipboard integration
-set clipboard=unnamed,unnamedplus
-vnoremap <C-c> "+y
-" Ensure Mac system clipboard works
-if has('macunix')
-    set clipboard=unnamed
-endif
+" --- Indentation ---
+set autoindent
+set smartindent
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 
-"""""""""""""" Code """""""""""""""""
-" Auto-pairs plugin
-call plug#begin('~/.vim/plugged')
-Plug 'jiangmiao/auto-pairs'
-call plug#end()
+" --- Performance ---
+set lazyredraw
+set ttyfast
+set updatetime=300
+set timeoutlen=500
+
+" --- Fichiers ---
+set nobackup
+set nowritebackup
+set noswapfile
+set autoread
+
+" --- Apparence ---
+syntax enable
+set termguicolors
+set background=dark
+
+" --- Raccourcis ---
+let mapleader = " "
+
+" Sauvegarder avec Ctrl+S
+nnoremap <C-s> :w<CR>
+inoremap <C-s> <Esc>:w<CR>a
+
+" Naviguer entre les splits
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Déplacer des lignes
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
+" Effacer la recherche highlight
+nnoremap <leader><space> :nohlsearch<CR>
+
+" Copier dans le clipboard système
+vnoremap <leader>y "+y
+nnoremap <leader>Y "+yg_
+
+" Ouvrir l'explorateur de fichiers
+nnoremap <leader>e :Explore<CR>
+
+" Buffer navigation
+nnoremap <leader>bn :bnext<CR>
+nnoremap <leader>bp :bprevious<CR>
+nnoremap <leader>bd :bdelete<CR>
+
+" --- Autocommandes ---
+augroup vimrc
+  autocmd!
+  " Retourner à la dernière position d'édition
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+  " Supprimer les espaces en fin de ligne à la sauvegarde
+  autocmd BufWritePre * :%s/\s\+$//e
+augroup END

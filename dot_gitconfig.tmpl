@@ -1,39 +1,50 @@
 [user]
-        name = {{ .name }}
-        email = {{ .email }}
-
-[merge]
-        ff = no
-
-[alias]
-        yolo = !git commit -m \"$(curl -s https://whatthecommit.com/index.txt)\"
-        install-hooks = "!f() { \
-                TEMPLATE=\"$HOME/.config/git/template/hooks\"; \
-                DEST=\"$(git rev-parse --git-path hooks)\"; \
-                mkdir -p \"$DEST\"; \
-                cp -a \"$TEMPLATE/\"* \"$DEST/\" 2>/dev/null || true; \
-                chmod +x \"$DEST/\"* 2>/dev/null || true; \
-                echo \"Hooks installés depuis $TEMPLATE vers $DEST\"; \
-        }; f"
-        work-email = !git config user.email "{{ .workEmail }}" && echo "Email set to work address"
-        perso-email = !git config user.email "{{ .email }}" && echo "Email set to personal address"
-    push-force = "!f() { \
-        WEBHOOK_URL=\"https://discord.com/api/webhooks/1466372328089718836/DQALswaQP8RzTh9xoGin-FXa-Ipv8PEdbwOvGMNacFibBhjEtyTCP6WwQkwbBzVp59lM\"; \
-        MESSAGE=\"🚨 Mélissa a (encore) fait un git push --force, honte à elle 🚨\"; \
-        curl -s -H \"Content-Type: application/json\" -X POST -d \"{\\\"content\\\": \\\"$MESSAGE\\\"}\" \"$WEBHOOK_URL\" >/dev/null 2>&1; \
-        git push --force \"$@\"; \
-    }; f"
-
+  name = {{ .name | quote }}
+  email = {{ .email | quote }}
 
 [core]
-        editor = vim
-        excludesfile = ~/.config/git/ignore
-[filter "lfs"]
-        process = git-lfs filter-process
-        required = true
-        clean = git-lfs clean -- %f
-        smudge = git-lfs smudge -- %f
-[branch]
-        autosetuprebase = always
+  editor = vim
+  autocrlf = input
+  pager = less -FRX
+
 [init]
-        templateDir = ~/.config/git/template
+  defaultBranch = main
+
+[pull]
+  rebase = true
+
+[push]
+  autoSetupRemote = true
+  default = current
+
+[fetch]
+  prune = true
+
+[merge]
+  conflictstyle = diff3
+
+[diff]
+  colorMoved = default
+
+[rerere]
+  enabled = true
+
+[color]
+  ui = auto
+
+[alias]
+  st = status -sb
+  co = checkout
+  br = branch
+  ci = commit
+  amend = commit --amend --no-edit
+  unstage = reset HEAD --
+  last = log -1 HEAD
+  lg = log --oneline --graph --decorate --all
+  wip = !git add -A && git commit -m 'WIP'
+  undo = reset --soft HEAD~1
+  aliases = config --get-regexp alias
+  branches = branch -a
+  tags = tag -l
+  stashes = stash list
+  cleanup = !git branch --merged | grep -v '\\*\\|main\\|master\\|develop' | xargs -n 1 git branch -d
