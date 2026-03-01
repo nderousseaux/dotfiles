@@ -49,7 +49,7 @@ Si les dotfiles sur le repo sont mis à jour, il suffit d'exécuter la commande 
 chezmoi update
 ```
 
-Si des changements concernent le script d'installation, il faudra réexécuter la commande d'(installation initiale)[#installation-de-lenvironnement-sur-une-nouvelle-machine].
+Si des changements concernent le script d'installation, chezmoi le détectera automatiquement (via son hash) et le réexécutera au prochain `chezmoi apply` ou `chezmoi update`.
 
 ### Mise à jour du repo depuis la machine
 
