@@ -12,17 +12,19 @@ Mes fichiers de configuration, gérés avec [chezmoi](https://chezmoi.io/).
 
 ## 📦 What's Inside ?
 
-- **Script d'installation** : `run_once_before_01-install-packages.sh` : Script que chezmoi exécute avant d'installer les packages, pour préparer l'environnement. Ça permet d'installer tout ce qui ne peut pas être installé via Homebrew : comme homebrew lui-même, ou Oh My Zsh.
-- **Brewfile** : `dot_Brewfile` : Liste des applications et outils à installer via Homebrew.
-- **Dotfiles** : Tous les fichiers de configuration pour les outils que j'utilise (zsh, git, neovim, etc.).
+- **Script before** : `run_once_before_01-install-packages.sh` : Installe les prérequis (Homebrew, Oh My Zsh) **avant** le déploiement des dotfiles.
+- **Brewfile** : `dot_Brewfile` → `~/.Brewfile` : Liste des applications et outils à installer via Homebrew.
+- **Script after** : `run_once_after_02-install-brewfile.sh` : Exécute `brew bundle --global` **après** le déploiement des dotfiles (quand `~/.Brewfile` est en place).
+- **Dotfiles** : Tous les fichiers de configuration pour les outils que j'utilise (zsh, git, etc.).
 
-### Liste des applicatons installées :
-  - Homebrew : (via le script d'installation)
-  - Oh My Zsh : (via le script d'installation)
-  - Zsh : (via Homebrew)
+### Liste des applications installées :
+  - Homebrew (via le script before)
+  - Oh My Zsh (via le script before)
+  - Zsh (via Homebrew)
 
 ### Liste des dotfiles gérés :
   - `dot_zshrc` → `~/.zshrc` : Configuration de Zsh et Oh My Zsh
+  - `dot_Brewfile` → `~/.Brewfile` : Liste des packages Homebrew
 
 
 ## 🚀 Usage
@@ -36,10 +38,11 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply nderousseaux
 > Remplacer `nderousseaux` par ton nom d'utilisateur GitHub si le repo est hébergé sous un autre nom.
 
 Ce qui se passe lors de l'exécution de cette commande :
-1. **Homebrew** est installé (si absent)
-2. **Tous les packages** du Brewfile sont installés
-3. **Oh My Zsh** est installé (si absent)
-4. **Tous les dotfiles** sont déployés à leur emplacement
+1. chezmoi est installé
+2. Le repo `github.com/nderousseaux/dotfiles` est cloné dans `~/.local/share/chezmoi/`
+3. **Script before** : Homebrew et Oh My Zsh sont installés (si absents)
+4. **Déploiement des dotfiles** : `dot_zshrc` → `~/.zshrc`, `dot_Brewfile` → `~/.Brewfile`, etc.
+5. **Script after** : `brew bundle --global` installe tous les packages du `~/.Brewfile`
 
 ### Mise à jour depuis le repo
 
@@ -56,18 +59,18 @@ Si des changements concernent le script d'installation, chezmoi le détectera au
 Pour éditer les dotfiles, il est recommandé d'utiliser chezmoi pour éviter les conflits et s'assurer que les changements sont bien appliqués :
 
 ```bash
-# Éditer via chezmoi (recommandé)
+# Éditer via chezmoi (ouvre le fichier source, pas la destination)
 chezmoi edit ~/.zshrc
 
-# Voir les différences avant d'appliquer
+# Voir les différences source → destination
 chezmoi diff
 
 # Appliquer les changements
 chezmoi apply
 
-# Commit et push les changements sur GitHub (depuis n'importe où)
+# Commit et push
 chezmoi git add .
-chezmoi git commit -- -m "Update dotfiles"
+chezmoi git commit -m "Update zshrc"
 chezmoi git push
 ```
 
