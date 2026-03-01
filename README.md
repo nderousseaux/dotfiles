@@ -1,44 +1,59 @@
-# 🏠 Dotfiles
+# Dotfiles
+
+La configuration de mon environnement de développement, versionnée et réplicable sur n'importe quelle machine.
+
+
+## 📋 About
+
+Les "dotfiles" sont des fichiers de configuration pour les outils en ligne de commande, les éditeurs de code, les gestionnaires de fenêtres, etc. Ils permettent de personnaliser et d'optimiser l'environnement de travail.
 
 Mes fichiers de configuration, gérés avec [chezmoi](https://chezmoi.io/).
 
-## Contenu
 
-| Fichier | Description |
-|---|---|
-| `.zshrc` | Configuration Zsh + Oh My Zsh |
-| `.gitconfig` | Configuration Git (aliases, pull rebase, etc.) |
-| `.ssh/config` | Configuration SSH (GitHub, etc.) |
-| `.vimrc` | Configuration Vim |
-| `.tmux.conf` | Configuration tmux (préfixe `C-a`, navigation vim) |
-| `.config/starship.toml` | Prompt Starship minimaliste |
-| `.Brewfile` | Packages Homebrew |
-| `Library/.../Code/User/settings.json` | Settings VS Code |
+## 📦 What's Inside ?
 
-## Installation sur une nouvelle machine
+- **Script d'installation** : `run_once_before_01-install-packages.sh` : Script que chezmoi exécute avant d'installer les packages, pour préparer l'environnement. Ça permet d'installer tout ce qui ne peut pas être installé via Homebrew : comme homebrew lui-même, ou Oh My Zsh.
+- **Brewfile** : `dot_Brewfile` : Liste des applications et outils à installer via Homebrew.
+- **Dotfiles** : Tous les fichiers de configuration pour les outils que j'utilise (zsh, git, neovim, etc.).
 
-### 1. Installer chezmoi et appliquer les dotfiles
+### Liste des applicatons installées :
+  - Homebrew : (via le script d'installation)
+  - Oh My Zsh : (via le script d'installation)
+  - Zsh : (via Homebrew)
+
+### Liste des dotfiles gérés :
+  - `dot_zshrc` → `~/.zshrc` : Configuration de Zsh et Oh My Zsh
+
+
+## 🚀 Usage
+
+### Installation de l'environnement sur une nouvelle machine
 
 ```bash
-sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply n.derousseaux
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply nderousseaux
 ```
 
-> Remplacer `n.derousseaux` par ton nom d'utilisateur GitHub si le repo est hébergé sous un autre nom.
+> Remplacer `nderousseaux` par ton nom d'utilisateur GitHub si le repo est hébergé sous un autre nom.
 
-### 2. Ce qui se passe automatiquement
-
+Ce qui se passe lors de l'exécution de cette commande :
 1. **Homebrew** est installé (si absent)
 2. **Tous les packages** du Brewfile sont installés
 3. **Oh My Zsh** est installé (si absent)
 4. **Tous les dotfiles** sont déployés à leur emplacement
 
-## Mise à jour
+### Mise à jour depuis le repo
+
+Si les dotfiles sur le repo sont mis à jour, il suffit d'exécuter la commande chezmoi :
 
 ```bash
 chezmoi update
 ```
 
-## Modifier un fichier
+Si des changements concernent le script d'installation, il faudra réexécuter la commande d'(installation initiale)[#installation-de-lenvironnement-sur-une-nouvelle-machine].
+
+### Mise à jour du repo depuis la machine
+
+Pour éditer les dotfiles, il est recommandé d'utiliser chezmoi pour éviter les conflits et s'assurer que les changements sont bien appliqués :
 
 ```bash
 # Éditer via chezmoi (recommandé)
@@ -49,31 +64,20 @@ chezmoi diff
 
 # Appliquer les changements
 chezmoi apply
+
+# Commit et push les changements sur GitHub (depuis n'importe où)
+chezmoi git add .
+chezmoi git commit -- -m "Update dotfiles"
+chezmoi git push
 ```
 
-## Ajouter un nouveau fichier
+### Rattraper une modification manuelle
+
+Si une modification a été faite manuellement sur la machine, en éditant directement un fichier de configuration sans passer par `chezmoi`, il est possible de synchroniser ces changements avec le repo :
 
 ```bash
-chezmoi add ~/.config/quelque-chose
+# Si le fichier est géré : recopier l'état actuel dans la source chezmoi
+chezmoi re-add ~/.zshrc
 ```
 
-## Structure du repo
-
-```
-.
-├── .chezmoi.toml.tmpl              # Config chezmoi (nom, email)
-├── .chezmoiignore                  # Fichiers ignorés
-├── dot_zshrc                       # → ~/.zshrc
-├── dot_gitconfig.tmpl              # → ~/.gitconfig
-├── dot_vimrc                       # → ~/.vimrc
-├── dot_tmux.conf                   # → ~/.tmux.conf
-├── dot_Brewfile                    # → ~/.Brewfile
-├── dot_config/
-│   └── starship.toml               # → ~/.config/starship.toml
-├── private_dot_ssh/
-│   └── config                      # → ~/.ssh/config
-├── private_Library/...
-│   └── settings.json               # → ~/Library/.../Code/User/settings.json
-├── run_once_before_01-install-packages.sh
-└── run_once_before_10-install-ohmyzsh.sh
-```
+## 🗺️ Roadmap
