@@ -15,6 +15,13 @@ Mes fichiers de configuration, gérés avec [chezmoi](https://chezmoi.io/).
 ## 🚀 Usage
 
 ### Installation sur une nouvelle machine
+> **macOS** : Avant toute chose, installer les Xcode Command Line Tools :
+> ```bash
+> # Installer Xcode CLI Tools
+> xcode-select --install
+> # Accepter la license
+> sudo xcodebuild -license
+> ```
 
 ```bash
 sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin init --apply nderousseaux
@@ -23,7 +30,7 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin init --apply nderous
 Ce qui se passe :
 1. chezmoi est installé
 2. Le repo `github.com/nderousseaux/dotfiles` est cloné dans `~/.local/share/chezmoi/`
-3. Les dotfiles sont déployés
+3. Les dotfiles sont déployés (Homebrew est installé automatiquement)
 
 ### Mise à jour depuis le repo
 
