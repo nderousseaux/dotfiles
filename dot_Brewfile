@@ -5,8 +5,8 @@
 brew "zsh"
 brew "tree"
 brew "vim"
-brew "caffeine"
 
 # Terminal
 cask "ghostty"
 cask "font-jetbrains-mono"
+cask "caffeine"
