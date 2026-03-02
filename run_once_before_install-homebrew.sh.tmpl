@@ -1,0 +1,22 @@
+#!/bin/bash
+# Installe Homebrew si non présent
+
+{{ if eq .chezmoi.os "linux" "darwin" -}}
+
+if ! command -v brew &>/dev/null; then
+  echo "📦 Installation de Homebrew..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+  # Ajoute brew au PATH pour la session courante
+  {{ if eq .chezmoi.os "linux" -}}
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  {{ else -}}
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  {{ end -}}
+
+  echo "✅ Homebrew installé avec succès"
+else
+  echo "✅ Homebrew est déjà installé"
+fi
+
+{{ end -}}
