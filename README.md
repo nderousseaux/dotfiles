@@ -12,20 +12,14 @@ Mes fichiers de configuration, gérés avec [chezmoi](https://chezmoi.io/).
 
 ## 📦 What's Inside ?
 
-- **Script before** : `run_once_before_01-install-packages.sh` : Installe les prérequis (Homebrew, Oh My Zsh) **avant** le déploiement des dotfiles.
+- **Script before** : `run_once_before_01-install-packages.sh` : Installe les prérequis (Homebrew) **avant** le déploiement des dotfiles.
 - **Brewfile** : `dot_Brewfile` → `~/.Brewfile` : Liste des applications et outils à installer via Homebrew.
 - **Script after** : `run_once_after_02-install-brewfile.sh` : Exécute `brew bundle --global` **après** le déploiement des dotfiles (quand `~/.Brewfile` est en place).
 - **Dotfiles** : Tous les fichiers de configuration pour les outils que j'utilise (zsh, git, etc.).
 
 ### Liste des applications installées :
-  - Homebrew (via le script before)
-  - Oh My Zsh (via le script before)
-  - Zsh (via Homebrew)
-
-### Liste des dotfiles gérés :
-  - `dot_zshrc` → `~/.zshrc` : Configuration de Zsh et Oh My Zsh
-  - `dot_Brewfile` → `~/.Brewfile` : Liste des packages Homebrew
-
+- Homebrew (via script before)
+- zsh, et configuré via `dot_zshrc`
 
 ## 🚀 Usage
 
@@ -35,12 +29,12 @@ Mes fichiers de configuration, gérés avec [chezmoi](https://chezmoi.io/).
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply nderousseaux
 ```
 
-> Remplacer `nderousseaux` par ton nom d'utilisateur GitHub si le repo est hébergé sous un autre nom.
+Remplacer `nderousseaux` par ton nom d'utilisateur GitHub si le repo est hébergé sous un autre nom.
 
 Ce qui se passe lors de l'exécution de cette commande :
 1. chezmoi est installé
 2. Le repo `github.com/nderousseaux/dotfiles` est cloné dans `~/.local/share/chezmoi/`
-3. **Script before** : Homebrew et Oh My Zsh sont installés (si absents)
+3. **Script before** : Homebrew est installé (si absent)
 4. **Déploiement des dotfiles** : `dot_zshrc` → `~/.zshrc`, `dot_Brewfile` → `~/.Brewfile`, etc.
 5. **Script after** : `brew bundle --global` installe tous les packages du `~/.Brewfile`
 
