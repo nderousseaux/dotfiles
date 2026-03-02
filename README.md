@@ -31,7 +31,7 @@ Mes fichiers de configuration, gérés avec [chezmoi](https://chezmoi.io/).
 > ```
 
 ```bash
-sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin init --apply nderousseaux
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply nderousseaux
 ```
 
 Ce qui se passe :

@@ -6,11 +6,18 @@
 echo "📦 Installation des paquets Homebrew..."
 
 # S'assure que brew est dans le PATH
-{{ if eq .chezmoi.os "linux" -}}
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-{{ else -}}
-eval "$(/opt/homebrew/bin/brew shellenv)"
-{{ end -}}
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -x /usr/local/bin/brew ]]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+elif [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
+if ! command -v brew &>/dev/null; then
+  echo "❌ Homebrew introuvable, vérifiez l'installation."
+  exit 1
+fi
 
 brew bundle --global
 
