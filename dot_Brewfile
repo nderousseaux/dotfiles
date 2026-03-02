@@ -5,6 +5,7 @@
 brew "zsh"
 brew "tree"
 brew "vim"
+brew "caffeinate"
 
 # Terminal
 cask "ghostty"
