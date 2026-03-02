@@ -1,4 +1,0 @@
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
-# Add chezmoi to the path
-export PATH="$HOME/bin:$PATH"

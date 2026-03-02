@@ -19,7 +19,6 @@ Mes fichiers de configuration, gérés avec [chezmoi](https://chezmoi.io/).
 
 ### Liste des applications installées :
 - Homebrew (via script before)
-- zsh, et configuré via `dot_zshrc`
 
 ## 🚀 Usage
 
