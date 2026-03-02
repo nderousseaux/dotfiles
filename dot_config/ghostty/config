@@ -5,7 +5,7 @@
 # ---------------------------------------------------------------------------
 theme = catppuccin-mocha
 
-font-family = JetBrainsMono Nerd Font
+font-family = JetBrains Mono
 font-size = 13
 
 window-padding-x = 8
