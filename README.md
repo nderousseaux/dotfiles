@@ -37,7 +37,11 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/bin init --apply nderousseaux
 Ce qui se passe :
 1. chezmoi est installé
 2. Le repo `github.com/nderousseaux/dotfiles` est cloné dans `~/.local/share/chezmoi/`
-3. Les dotfiles sont déployés (Homebrew est installé automatiquement)
+3. Le script `run_once_before_install-homebrew.sh` est exécuté, installant Homebrew.
+4. Les dotfiles sont déployés au bon endroit (ex: `dot_zshrc` → `~/.zshrc`).
+5. Le script `run_once_after_brew-bundle.sh` est exécuté, installant les paquets listés dans `dot_Brewfile` (ex: `zsh`).
+
+> Remplacer `nderousseaux` par ton nom d'utilisateur GitHub si le repo est hébergé sous un autre nom.
 
 ### Mise à jour depuis le repo
 
