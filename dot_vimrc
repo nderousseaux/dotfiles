@@ -12,6 +12,7 @@ set hidden                    " Permet de changer de buffer sans sauvegarder
 set history=1000              " Historique des commandes
 set undolevels=500            " Niveaux d'annulation
 set autoread                  " Recharge automatiquement les fichiers modifiés
+set mouse=a                   " Support de la souris dans tous les modes
 
 " ---------------------------------------------------------------------------
 " Apparence
@@ -30,6 +31,8 @@ set scrolloff=8               " Garde 8 lignes visibles autour du curseur
 set sidescrolloff=8
 set signcolumn=yes            " Colonne de signes toujours visible
 set colorcolumn=80            " Marqueur de colonne 80
+set textwidth=80              " Largeur maximale du texte
+highlight ColorColumn ctermbg=black guibg=#222222
 set wildmenu                  " Complétion améliorée de la ligne de commande
 set wildmode=list:longest,full
 set termguicolors             " Couleurs 24 bits
@@ -69,6 +72,14 @@ set nobackup                  " Pas de fichier de sauvegarde
 set nowritebackup
 
 " ---------------------------------------------------------------------------
+" Presse-papiers
+" ---------------------------------------------------------------------------
+set clipboard=unnamed,unnamedplus  " Intégration du presse-papiers système
+if has('macunix')
+  set clipboard=unnamed            " Compatibilité macOS
+endif
+
+" ---------------------------------------------------------------------------
 " Raccourcis
 " ---------------------------------------------------------------------------
 let mapleader = " "
@@ -76,6 +87,19 @@ let mapleader = " "
 " Sauvegarder avec Ctrl+S
 nnoremap <C-s> :w<CR>
 inoremap <C-s> <Esc>:w<CR>a
+
+" Quitter avec Ctrl+Q
+nnoremap <C-q> :q<CR>
+
+" Sélectionner tout avec Ctrl+A
+nnoremap <C-a> ggVG
+
+" Annuler/Rétablir avec Ctrl+Z / Ctrl+Y
+nnoremap <C-z> u
+nnoremap <C-y> <C-r>
+
+" Copier dans le presse-papiers avec Ctrl+C (mode visuel)
+vnoremap <C-c> "+y
 
 " Effacer le surlignage de recherche
 nnoremap <leader><space> :nohlsearch<CR>
@@ -92,6 +116,12 @@ nnoremap <A-k> :m .-2<CR>==
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
+" Indentation avec Tab / Shift+Tab
+nnoremap <Tab> >>
+nnoremap <S-Tab> <<
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
+
 " Copier dans le clipboard système
 vnoremap <leader>y "+y
 nnoremap <leader>Y "+yg_
@@ -103,6 +133,27 @@ nnoremap <leader>e :Explore<CR>
 nnoremap <leader>bn :bnext<CR>
 nnoremap <leader>bp :bprevious<CR>
 nnoremap <leader>bd :bdelete<CR>
+
+" ---------------------------------------------------------------------------
+" Plugins (vim-plug)
+" ---------------------------------------------------------------------------
+" Installation automatique de vim-plug si absent
+let data_dir = expand('~/.vim')
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo ' . data_dir . '/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+Plug 'jiangmiao/auto-pairs'   " Fermeture automatique des parenthèses/guillemets
+call plug#end()
+
+" Installation automatique des plugins manquants au démarrage
+autocmd VimEnter *
+  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \|   PlugInstall --sync | source $MYVIMRC
+  \| endif
 
 " ---------------------------------------------------------------------------
 " Autocommandes

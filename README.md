@@ -19,7 +19,7 @@ Mes fichiers de configuration, gérés avec [chezmoi](https://chezmoi.io/).
 - vim
 - Ghostty
 
-Le tout avec la police `JetBrains Mono` et le thème `Catpuccin Mocha`.
+Le tout avec la police `JetBrains Mono` et le thème `Catpuccin Frappé`.
 
 ## 🚀 Usage
 
