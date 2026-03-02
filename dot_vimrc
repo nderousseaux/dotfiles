@@ -17,7 +17,7 @@ set mouse=a                   " Support de la souris dans tous les modes
 " ---------------------------------------------------------------------------
 " Apparence
 " ---------------------------------------------------------------------------
-syntax enable                 " Coloration syntaxique
+syntax on                     " Coloration syntaxique
 set number                    " Numéros de ligne
 set relativenumber            " Numéros relatifs
 set cursorline                " Met en évidence la ligne courante
