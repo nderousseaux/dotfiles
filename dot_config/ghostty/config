@@ -3,13 +3,16 @@
 # ---------------------------------------------------------------------------
 # Apparence
 # ---------------------------------------------------------------------------
-theme = adventure
+theme = Catppuccin Frappe
 
 font-family = JetBrains Mono
 font-size = 13
 
 window-padding-x = 8
 window-padding-y = 8
+
+window-width = 80
+window-height = 24
 
 cursor-style = block
 cursor-style-blink = true
