@@ -28,8 +28,9 @@ set title                     " Titre de la fenêtre
 set scrolloff=8               " Garde 8 lignes visibles autour du curseur
 set sidescrolloff=8
 set signcolumn=no             " Colonne de signes masquée
-set colorcolumn=81            " Marqueur de colonne 80
-set textwidth=80              " Largeur maximale du texte
+set colorcolumn=81            " Barre visuelle à la colonne 81
+set textwidth=80              " Retour à la ligne automatique après 80 caractères
+set formatoptions+=t          " Active le retour à la ligne automatique en cours de frappe
 highlight ColorColumn ctermbg=black guibg=#222222
 set wildmenu                  " Complétion améliorée de la ligne de commande
 set wildmode=list:longest,full
