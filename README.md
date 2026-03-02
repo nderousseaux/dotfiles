@@ -15,8 +15,8 @@ Mes fichiers de configuration, gérés avec [chezmoi](https://chezmoi.io/).
 - **Fichiers de configuration** : `dot_zshrc` (→ `~/.zshrc`), `dot_gitconfig` (→ `~/.gitconfig`), etc.
 
 ### Liste des outils installés et configurés
-- Chezmoi (par défaut, par le init)
 - Homebrew (par le script d'installation)
+- Chezmoi
 - Zsh
 
 ## 🚀 Usage

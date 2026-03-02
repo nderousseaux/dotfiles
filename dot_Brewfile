@@ -2,4 +2,5 @@
 # Utilisé avec : brew bundle --global
 
 # Shell
+brew "chezmoi"
 brew "zsh"
