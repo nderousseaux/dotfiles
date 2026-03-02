@@ -29,8 +29,11 @@ set scrolloff=8               " Garde 8 lignes visibles autour du curseur
 set sidescrolloff=8
 set signcolumn=no             " Colonne de signes masquée
 set colorcolumn=81            " Barre visuelle à la colonne 81
+set textwidth=0               " Pas de limite de largeur de texte
+set wrapmargin=0              " Pas de marge pour le retour à la ligne
 set wrap                      " Retour à la ligne visuel
 set linebreak                 " Coupe au mot, pas au milieu
+set columns=80                " Largeur maximale d'une ligne
 highlight ColorColumn ctermbg=black guibg=#222222
 set wildmenu                  " Complétion améliorée de la ligne de commande
 set wildmode=list:longest,full
