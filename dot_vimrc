@@ -147,7 +147,10 @@ endif
 
 call plug#begin('~/.vim/plugged')
 Plug 'jiangmiao/auto-pairs'   " Fermeture automatique des parenthèses/guillemets
+Plug 'catppuccin/vim', { 'as': 'catppuccin' }  " Thème Catppuccin
 call plug#end()
+
+colorscheme catppuccin_frappe
 
 " Installation automatique des plugins manquants au démarrage
 autocmd VimEnter *
