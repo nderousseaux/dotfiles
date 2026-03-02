@@ -34,6 +34,20 @@ set textwidth=0               " Pas de limite de largeur de texte
 set wrapmargin=0              " Pas de marge pour le retour à la ligne
 set wrap                      " Retour à la ligne visuel
 set linebreak                 " Coupe au mot, pas au milieu
+
+" Wrap visuel à 80 colonnes : padding à droite
+function! s:SetupVisualWrap() abort
+  let l:target = 80
+  if &columns <= l:target | return | endif
+  botright vnew
+  setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile
+  setlocal nonumber norelativenumber signcolumn=no colorcolumn=
+  setlocal nocursorline nocursorcolumn winfixwidth
+  wincmd p
+  execute 'vertical resize ' . l:target
+endfunction
+autocmd VimEnter * call s:SetupVisualWrap()
+
 set wildmenu                  " Complétion améliorée de la ligne de commande
 set wildmode=list:longest,full
 set termguicolors             " Couleurs 24 bits
