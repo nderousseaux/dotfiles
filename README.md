@@ -10,8 +10,8 @@ Mes fichiers de configuration, gérés avec [chezmoi](https://chezmoi.io/).
 
 ## 📦 What's Inside ?
 
-- **Script d'installation** : `run_once_before_install-homebrew.sh`, s'exécute avant l'installation des dotfiles, pour installer Homebrew, et `run_once_after_brew-bundle.sh`, qui s'exécute après l'installation des paquets Homebrew.
-- **Brewfile** : `dot_Brewfile` (→ `~/.Brewfile`), liste les paquets Homebrew à installer (dont `zsh`). Exécuté automatiquement via `run_once_after_brew-bundle.sh`.
+- **Script d'installation** : `run_onchange_before_install-homebrew.sh`, s'exécute avant l'installation des dotfiles, pour installer Homebrew, et `run_onchange_after_brew-bundle.sh`, qui s'exécute après et à chaque modification du Brewfile.
+- **Brewfile** : `dot_Brewfile` (→ `~/.Brewfile`), liste les paquets Homebrew à installer (dont `zsh`). Exécuté automatiquement via `run_onchange_after_brew-bundle.sh` à chaque changement.
 - **Fichiers de configuration** : `dot_zshrc` (→ `~/.zshrc`), `dot_gitconfig` (→ `~/.gitconfig`), etc.
 
 ### Liste des outils installés et configurés
@@ -37,17 +37,11 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/bin init --apply nderousseaux
 Ce qui se passe :
 1. chezmoi est installé
 2. Le repo `github.com/nderousseaux/dotfiles` est cloné dans `~/.local/share/chezmoi/`
-3. Le script `run_once_before_install-homebrew.sh` est exécuté, installant Homebrew.
+3. Le script `run_onchange_before_install-homebrew.sh` est exécuté, installant Homebrew.
 4. Les dotfiles sont déployés au bon endroit (ex: `dot_zshrc` → `~/.zshrc`).
-5. Le script `run_once_after_brew-bundle.sh` est exécuté, installant les paquets listés dans `dot_Brewfile` (ex: `zsh`).
+5. Le script `run_onchange_after_brew-bundle.sh` est exécuté, installant les paquets listés dans `dot_Brewfile` (ex: `zsh`).
 
 > Remplacer `nderousseaux` par ton nom d'utilisateur GitHub si le repo est hébergé sous un autre nom.
-
-Si il faut forcer la ré-execution d'un script : 
-```bash
-$ chezmoi state delete-bucket --bucket=scriptState
-$ chezmoi apply
-```
 
 ### Mise à jour depuis le repo
 
