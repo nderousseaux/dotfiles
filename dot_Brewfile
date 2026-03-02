@@ -3,3 +3,4 @@
 
 # Shell
 brew "zsh"
+brew "tree"
