@@ -1,0 +1,24 @@
+#!/bin/bash
+# Installe le thème Catppuccin Mocha pour Ghostty
+# url: https://raw.githubusercontent.com/catppuccin/ghostty/main/themes/catppuccin-mocha
+
+{{ if eq .chezmoi.os "darwin" -}}
+
+THEME_DIR="$HOME/.config/ghostty/themes"
+THEME_FILE="$THEME_DIR/catppuccin-mocha"
+
+mkdir -p "$THEME_DIR"
+
+echo "🎨 Installation du thème Catppuccin Mocha pour Ghostty..."
+
+curl -fsSL "https://raw.githubusercontent.com/catppuccin/ghostty/main/themes/catppuccin-mocha" \
+  -o "$THEME_FILE"
+
+if [[ -f "$THEME_FILE" ]]; then
+  echo "✅ Thème installé : $THEME_FILE"
+else
+  echo "❌ Échec du téléchargement du thème"
+  exit 1
+fi
+
+{{ end -}}
