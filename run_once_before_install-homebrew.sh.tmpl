@@ -5,7 +5,10 @@
 
 if ! command -v brew &>/dev/null; then
   echo "📦 Installation de Homebrew..."
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || {
+    echo "❌ L'installation de Homebrew a échoué (droits sudo manquants ?)."
+    exit 1
+  }
 
   # Ajoute brew au PATH pour la session courante
   if [[ -x /opt/homebrew/bin/brew ]]; then
