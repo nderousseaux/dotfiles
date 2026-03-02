@@ -43,6 +43,12 @@ Ce qui se passe :
 
 > Remplacer `nderousseaux` par ton nom d'utilisateur GitHub si le repo est hébergé sous un autre nom.
 
+Si il faut forcer la ré-execution d'un script : 
+```bash
+$ chezmoi state delete-bucket --bucket=scriptState
+$ chezmoi apply
+```
+
 ### Mise à jour depuis le repo
 
 ```bash
