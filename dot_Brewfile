@@ -5,3 +5,7 @@
 brew "zsh"
 brew "tree"
 brew "vim"
+
+# Terminal
+cask "ghostty"
+cask "font-jetbrains-mono-nerd-font"

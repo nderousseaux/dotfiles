@@ -11,8 +11,8 @@ Mes fichiers de configuration, gérés avec [chezmoi](https://chezmoi.io/).
 ## 📦 What's Inside ?
 
 - **Script d'installation** : `run_onchange_before_install-homebrew.sh`, s'exécute avant l'installation des dotfiles, pour installer Homebrew, et `run_onchange_after_brew-bundle.sh`, qui s'exécute après et à chaque modification du Brewfile.
-- **Brewfile** : `dot_Brewfile` (→ `~/.Brewfile`), liste les paquets Homebrew à installer (dont `zsh`). Exécuté automatiquement via `run_onchange_after_brew-bundle.sh` à chaque changement.
-- **Fichiers de configuration** : `dot_zshrc` (→ `~/.zshrc`), `dot_gitconfig` (→ `~/.gitconfig`), etc.
+- **Brewfile** : `dot_Brewfile` (→ `~/.Brewfile`), liste les paquets Homebrew à installer. Exécuté automatiquement via `run_onchange_after_brew-bundle.sh` à chaque changement.
+- **Fichiers de configuration** : `dot_zshrc` (→ `~/.zshrc`), `dot_vimrc` (→ `~/.vimrc`), etc...
 
 ### Liste des outils 
 
@@ -20,11 +20,16 @@ Mes fichiers de configuration, gérés avec [chezmoi](https://chezmoi.io/).
 - Chezmoi (par défaut, par le init)
 - Homebrew (par le script d'installation)
 - Zsh
+- vim
 
-**Outils cli secondaires :**
+**Applications :**
+- Ghostty
+
+**Outils CLI :**
 - tree
 
-#### 
+**Autres installations :**
+- JetBrains Mono (police de caractères)
 
 ## 🚀 Usage
 

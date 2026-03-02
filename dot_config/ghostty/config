@@ -1,0 +1,27 @@
+# ~/.config/ghostty/config — Configuration Ghostty
+
+# ---------------------------------------------------------------------------
+# Apparence
+# ---------------------------------------------------------------------------
+theme = catppuccin-mocha
+
+font-family = JetBrainsMono Nerd Font
+font-size = 13
+
+window-padding-x = 8
+window-padding-y = 8
+
+cursor-style = block
+cursor-style-blink = true
+
+# ---------------------------------------------------------------------------
+# Shell
+# ---------------------------------------------------------------------------
+shell-integration = zsh
+
+# ---------------------------------------------------------------------------
+# Comportement
+# ---------------------------------------------------------------------------
+mouse-hide-while-typing = true
+copy-on-select = false
+confirm-close-surface = false
