@@ -150,7 +150,7 @@ Plug 'jiangmiao/auto-pairs'   " Fermeture automatique des parenthèses/guillemet
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }  " Thème Catppuccin
 call plug#end()
 
-colorscheme catppuccin_frappe
+silent! colorscheme catppuccin_frappe
 
 " Installation automatique des plugins manquants au démarrage
 autocmd VimEnter *
