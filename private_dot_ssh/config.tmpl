@@ -1,0 +1,21 @@
+# ~/.ssh/config — Configuration du client SSH
+
+# ---------------------------------------------------------------------------
+# Défauts globaux
+# ---------------------------------------------------------------------------
+Host *
+    # Ajoute automatiquement les clés à l'agent SSH
+    AddKeysToAgent yes
+{{- if eq .chezmoi.os "darwin" }}
+    # Utilise le trousseau macOS pour stocker les phrases de passe
+    UseKeychain yes
+{{- end }}
+    # Optimise les performances sur les réseaux lents
+    IPQoS throughput
+
+# ---------------------------------------------------------------------------
+# Inclusions de configurations spécifiques
+# ---------------------------------------------------------------------------
+Include ~/.ssh/config.d/perso
+Include ~/.ssh/config.d/git
+Include ~/.ssh/config.d/pro

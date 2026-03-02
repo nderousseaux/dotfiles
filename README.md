@@ -14,9 +14,11 @@ Mes fichiers de configuration, gérés avec [chezmoi](https://chezmoi.io/).
 - **Brewfile** : `dot_Brewfile` (→ `~/.Brewfile`), liste les paquets Homebrew à installer. Exécuté automatiquement via `run_onchange_after_brew-bundle.sh` à chaque changement.
 - **Fichiers de configuration** : `dot_zshrc` (→ `~/.zshrc`), `dot_vimrc` (→ `~/.vimrc`), etc...
 
-### Liste des outils princpaux
+
+### Liste des outils principaux
 - Zsh
 - vim
+- SSH (`~/.ssh/rsa_keys`et `~/.ssh/config.d/` sont masqués, pour des raisons de sécurité évidentes.)
 - Ghostty
 
 Le tout avec la police `JetBrains Mono` et le thème `Catpuccin Frappé`.
