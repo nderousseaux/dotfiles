@@ -1,0 +1,19 @@
+#!/bin/bash
+# Installe les paquets définis dans ~/.Brewfile
+
+{{ if eq .chezmoi.os "linux" "darwin" -}}
+
+echo "📦 Installation des paquets Homebrew..."
+
+# S'assure que brew est dans le PATH
+{{ if eq .chezmoi.os "linux" -}}
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+{{ else -}}
+eval "$(/opt/homebrew/bin/brew shellenv)"
+{{ end -}}
+
+brew bundle --global
+
+echo "✅ Paquets installés avec succès"
+
+{{ end -}}

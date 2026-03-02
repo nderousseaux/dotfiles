@@ -1,0 +1,5 @@
+# Brewfile — paquets à installer via Homebrew
+# Utilisé avec : brew bundle --global
+
+# Shell
+brew "zsh"

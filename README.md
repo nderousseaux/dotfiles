@@ -10,7 +10,14 @@ Mes fichiers de configuration, gérés avec [chezmoi](https://chezmoi.io/).
 
 ## 📦 What's Inside ?
 
-- **Dotfiles** : Tous les fichiers de configuration pour les outils que j'utilise.
+- **Script d'installation** : `run_once_before_install-homebrew.sh`, s'exécute avant l'installation des dotfiles, pour installer Homebrew, et `run_once_after_brew-bundle.sh`, qui s'exécute après l'installation des paquets Homebrew.
+- **Brewfile** : `dot_Brewfile` (→ `~/.Brewfile`), liste les paquets Homebrew à installer (dont `zsh`). Exécuté automatiquement via `run_once_after_brew-bundle.sh`.
+- **Fichiers de configuration** : `dot_zshrc` (→ `~/.zshrc`), `dot_gitconfig` (→ `~/.gitconfig`), etc.
+
+### Liste des outils installés et configurés
+- Chezmoi (par défaut, par le init)
+- Homebrew (par le script d'installation)
+- Zsh
 
 ## 🚀 Usage
 
