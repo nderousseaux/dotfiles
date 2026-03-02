@@ -14,10 +14,17 @@ Mes fichiers de configuration, gérés avec [chezmoi](https://chezmoi.io/).
 - **Brewfile** : `dot_Brewfile` (→ `~/.Brewfile`), liste les paquets Homebrew à installer (dont `zsh`). Exécuté automatiquement via `run_onchange_after_brew-bundle.sh` à chaque changement.
 - **Fichiers de configuration** : `dot_zshrc` (→ `~/.zshrc`), `dot_gitconfig` (→ `~/.gitconfig`), etc.
 
-### Liste des outils installés et configurés
+### Liste des outils 
+
+**Outils principaux :**
 - Chezmoi (par défaut, par le init)
 - Homebrew (par le script d'installation)
 - Zsh
+
+**Outils cli secondaires :**
+- tree
+
+#### 
 
 ## 🚀 Usage
 
@@ -41,7 +48,7 @@ Ce qui se passe :
 4. Les dotfiles sont déployés au bon endroit (ex: `dot_zshrc` → `~/.zshrc`).
 5. Le script `run_onchange_after_brew-bundle.sh` est exécuté, installant les paquets listés dans `dot_Brewfile` (ex: `zsh`).
 
-> Remplacer `nderousseaux` par ton nom d'utilisateur GitHub si le repo est hébergé sous un autre nom.
+> Remplacer `nderousseaux` par le nom d'utilisateur GitHub si le repo est hébergé sous un autre nom.
 
 ### Mise à jour depuis le repo
 
