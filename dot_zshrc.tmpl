@@ -3,13 +3,7 @@
 # ---------------------------------------------------------------------------
 # PATH
 # ---------------------------------------------------------------------------
-{{ if eq .chezmoi.os "linux" -}}
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-{{ else if eq .chezmoi.os "darwin" -}}
-eval "$(/opt/homebrew/bin/brew shellenv)"
-{{ end -}}
-
-export "$HOME/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 
 # ---------------------------------------------------------------------------
 # Historique
