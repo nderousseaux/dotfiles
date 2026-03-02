@@ -1,0 +1,67 @@
+" ~/.vimrc — Configuration de Vim
+
+" ---------------------------------------------------------------------------
+" Général
+" ---------------------------------------------------------------------------
+set nocompatible              " Désactive la compatibilité Vi
+set encoding=utf-8            " Encodage UTF-8
+set fileencoding=utf-8
+set history=1000              " Historique des commandes
+set undolevels=500            " Niveaux d'annulation
+
+" ---------------------------------------------------------------------------
+" Apparence
+" ---------------------------------------------------------------------------
+syntax on                     " Coloration syntaxique
+set number                    " Numéros de ligne
+set relativenumber            " Numéros relatifs
+set cursorline                " Met en évidence la ligne courante
+set showcmd                   " Affiche la commande en cours de saisie
+set showmatch                 " Met en évidence les parenthèses correspondantes
+set laststatus=2              " Barre de statut toujours visible
+set scrolloff=5               " Garde 5 lignes visibles autour du curseur
+
+" ---------------------------------------------------------------------------
+" Indentation
+" ---------------------------------------------------------------------------
+set expandtab                 " Espaces plutôt que tabulations
+set tabstop=4                 " Largeur d'une tabulation
+set shiftwidth=4              " Largeur d'une indentation
+set softtabstop=4
+set autoindent                " Indentation automatique
+set smartindent
+
+" ---------------------------------------------------------------------------
+" Recherche
+" ---------------------------------------------------------------------------
+set incsearch                 " Recherche incrémentale
+set hlsearch                  " Surligne les résultats
+set ignorecase                " Insensible à la casse
+set smartcase                 " Sauf si la recherche contient des majuscules
+
+" ---------------------------------------------------------------------------
+" Fichiers
+" ---------------------------------------------------------------------------
+set noswapfile                " Pas de fichier swap
+set nobackup                  " Pas de fichier de sauvegarde
+set autoread                  " Recharge automatiquement les fichiers modifiés
+
+" ---------------------------------------------------------------------------
+" Raccourcis
+" ---------------------------------------------------------------------------
+let mapleader = " "
+
+" Effacer le surlignage de recherche
+nnoremap <leader>h :nohlsearch<CR>
+
+" Navigation entre les fenêtres
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Déplacement de lignes
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
