@@ -27,7 +27,7 @@ set noruler                   " Cache la position du curseur
 set title                     " Titre de la fenêtre
 set scrolloff=8               " Garde 8 lignes visibles autour du curseur
 set sidescrolloff=8
-set signcolumn=yes            " Colonne de signes toujours visible
+set signcolumn=no             " Colonne de signes masquée
 set colorcolumn=80            " Marqueur de colonne 80
 set textwidth=80              " Largeur maximale du texte
 highlight ColorColumn ctermbg=black guibg=#222222
