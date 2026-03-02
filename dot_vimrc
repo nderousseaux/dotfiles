@@ -19,13 +19,11 @@ set mouse=a                   " Support de la souris dans tous les modes
 " ---------------------------------------------------------------------------
 syntax on                     " Coloration syntaxique
 set number                    " Numéros de ligne
-set relativenumber            " Numéros relatifs
-set cursorline                " Met en évidence la ligne courante
-set showcmd                   " Affiche la commande en cours de saisie
-set showmode                  " Affiche le mode courant
 set showmatch                 " Met en évidence les parenthèses correspondantes
-set laststatus=2              " Barre de statut toujours visible
-set ruler                     " Position du curseur dans la barre de statut
+set laststatus=0              " Barre de statut masquée
+set noshowcmd                 " Cache la commande en cours
+set noshowmode                " Cache le mode courant
+set noruler                   " Cache la position du curseur
 set title                     " Titre de la fenêtre
 set scrolloff=8               " Garde 8 lignes visibles autour du curseur
 set sidescrolloff=8
