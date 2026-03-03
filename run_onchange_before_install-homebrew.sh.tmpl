@@ -32,16 +32,4 @@ else
   echo "✅ Homebrew est déjà installé"
 fi
 
-{{ if .decrypt_ssh -}}
-# age est nécessaire AVANT que chezmoi ne déchiffre les fichiers .age
-if ! command -v age &>/dev/null; then
-  echo "🔐 Installation de age (chiffrement SSH)..."
-  brew install age || {
-    echo "❌ L'installation de age a échoué."
-    exit 1
-  }
-  echo "✅ age installé avec succès"
-fi
-{{ end -}}
-
 {{ end -}}

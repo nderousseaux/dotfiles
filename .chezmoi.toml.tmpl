@@ -1,6 +1,11 @@
 {{- $decrypt_ssh := promptBoolOnce . "decrypt_ssh" "Déchiffrer la configuration SSH (nécessite la clé age)" -}}
 
-{{ if $decrypt_ssh -}}
+{{- /* On n'active le chiffrement que si la clé age existe déjà sur la machine.
+       Sur une install fraîche, elle n'existe pas encore : les fichiers .ssh/ sont
+       ignorés, puis un script after installe age, demande la clé et relance chezmoi. */ -}}
+{{- $key_exists := stat (joinPath .chezmoi.homeDir ".config/chezmoi/key.txt") -}}
+
+{{ if and $decrypt_ssh $key_exists -}}
 encryption = "age"
 {{ end -}}
 
@@ -9,7 +14,7 @@ encryption = "age"
   email = "n.derousseaux@icloud.com"
   decrypt_ssh = {{ $decrypt_ssh }}
 
-{{ if $decrypt_ssh -}}
+{{ if and $decrypt_ssh $key_exists -}}
 [age]
   identity = "~/.config/chezmoi/key.txt"
   recipient = "age1upmjypmztz83w8ahd7wqa9n5twq6z0g9fn8nthmnyu3qd3j6ea2sjm63vy"

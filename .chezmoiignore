@@ -4,6 +4,12 @@ README.md
 .ssh/rsa_keys/priv/
 
 {{ if not .decrypt_ssh }}
-# Si decrypt_ssh est false, on ignore tout le dossier .ssh
+# decrypt_ssh désactivé : on ignore tout .ssh/
 .ssh/
+{{ else }}
+{{   if not (stat (joinPath .chezmoi.homeDir ".config/chezmoi/key.txt")) }}
+# La clé age n'existe pas encore : on ignore .ssh/ en attendant
+# (le script after va la demander et relancer chezmoi)
+.ssh/
+{{   end }}
 {{ end }}

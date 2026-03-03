@@ -53,10 +53,10 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/bin init --apply --promptBool d
 Ce qui se passe :
 1. chezmoi est installé
 2. Le repo est cloné dans `~/.local/share/chezmoi/`
-3. Homebrew est installé (+ `age` si SSH activé)
-4. Si SSH activé : la clé age est demandée et enregistrée dans `~/.config/chezmoi/key.txt`
-5. Les dotfiles sont déployés (+ `~/.ssh/` déchiffré si SSH activé)
-6. Les paquets Homebrew sont installés via `brew bundle`
+3. Homebrew est installé
+4. Les dotfiles sont déployés (ex: `dot_zshrc` → `~/.zshrc`)
+5. Les paquets Homebrew sont installés via `brew bundle` (dont `age`)
+6. Si SSH activé : la clé age est demandée, puis `~/.ssh/` est déchiffré et déployé automatiquement
 
 > Remplacer `nderousseaux` par le nom d'utilisateur GitHub si le repo est hébergé sous un autre nom.
 
