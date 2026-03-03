@@ -39,7 +39,7 @@ Le tout avec la police `JetBrains Mono` et le thème `Catpuccin Frappé`.
 sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/bin init --apply --promptBool decrypt_ssh=false nderousseaux
 ```
 
-#### Avec la configuration SSH
+#### Avec la configuration SSH (fichier `~/.ssh/` chiffré avec age)
 
 ```bash
 sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/bin init --apply --promptBool decrypt_ssh=true nderousseaux
