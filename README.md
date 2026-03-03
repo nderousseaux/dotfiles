@@ -68,7 +68,7 @@ chezmoi apply
 chezmoi re-add ~/.fichier
 
 # Commit et push
-chezmoi git add . && chezmoi git commit -m "msg" && chezmoi git push
+chezmoi git add . && chezmoi git commit && chezmoi git push
 ```
 
 ### Gérer les fichiers chiffrés (age)
@@ -95,8 +95,8 @@ chezmoi re-add --encrypt ~/.fichier-secret
 chezmoi init --apply --prompt
 ```
 
----
 
 ## 🗺️ Roadmap
+- [ ] Rendre compatible avec Linux
 - [ ] Faire gérer les clés privées SSH par une Yubikey
 - [ ] Faire gérer la clé AGE par une Yubikey

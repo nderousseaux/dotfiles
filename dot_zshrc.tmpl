@@ -55,3 +55,40 @@ alias ...='cd ../..'
 
 # Alias spéciaux
 alias bssh='ssh -o ServerAliveInterval=10 -o ServerAliveCountMax=3 -t bastion --'
+
+# ---------------------------------------------------------------------------
+# fzf — fuzzy finder
+# ---------------------------------------------------------------------------
+if command -v fzf &>/dev/null; then
+  # Intégration shell (key bindings + complétion fuzzy)
+  source <(fzf --zsh)
+
+  # Options par défaut
+  export FZF_DEFAULT_OPTS="\
+    --height=40% \
+    --layout=reverse \
+    --border \
+    --info=inline \
+    --bind='?:toggle-preview'"
+
+  # Utiliser fd si disponible pour un listing plus rapide
+  if command -v fd &>/dev/null; then
+    export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+    export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
+  fi
+
+  # Aperçu : fichiers avec bat/cat, dossiers avec tree/ls
+  if command -v bat &>/dev/null; then
+    _fzf_file_preview='bat --color=always --style=plain --line-range :200 {}'
+  else
+    _fzf_file_preview='cat {}'
+  fi
+  if command -v tree &>/dev/null; then
+    _fzf_dir_preview='tree -C {} | head -50'
+  else
+    _fzf_dir_preview='ls -la {}'
+  fi
+  export FZF_CTRL_T_OPTS="--preview '[ -d {} ] && ${_fzf_dir_preview} || ${_fzf_file_preview}'"
+  export FZF_ALT_C_OPTS="--preview '${_fzf_dir_preview}'"
+fi

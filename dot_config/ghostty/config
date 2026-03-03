@@ -23,6 +23,12 @@ cursor-style-blink = true
 shell-integration = zsh
 
 # ---------------------------------------------------------------------------
+# Clavier
+# ---------------------------------------------------------------------------
+# Envoie des séquences d'échappement pour Alt/Option (requis pour fzf Alt+C, etc.)
+macos-option-as-alt = true
+
+# ---------------------------------------------------------------------------
 # Comportement
 # ---------------------------------------------------------------------------
 mouse-hide-while-typing = true

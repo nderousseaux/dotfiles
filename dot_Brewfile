@@ -5,6 +5,8 @@
 brew "zsh"
 brew "tree"
 brew "vim"
+brew "fzf"
+brew "bat"
 
 # Chiffrement (requis pour déchiffrer ~/.ssh/)
 brew "age"
