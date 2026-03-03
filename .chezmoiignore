@@ -1,1 +1,9 @@
 README.md
+
+# Les clés privées SSH ne sont jamais gérées par chezmoi
+.ssh/rsa_keys/priv/
+
+{{ if not .decrypt_ssh }}
+# Si decrypt_ssh est false, on ignore tout le dossier .ssh
+.ssh/
+{{ end }}

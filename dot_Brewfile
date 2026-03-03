@@ -6,6 +6,9 @@ brew "zsh"
 brew "tree"
 brew "vim"
 
+# Chiffrement (requis pour déchiffrer ~/.ssh/)
+brew "age"
+
 # Terminal
 cask "ghostty"
 cask "font-jetbrains-mono"

@@ -1,0 +1,16 @@
+{{- $decrypt_ssh := promptBoolOnce . "decrypt_ssh" "Déchiffrer la configuration SSH (nécessite la clé age)" -}}
+
+{{ if $decrypt_ssh -}}
+encryption = "age"
+{{ end -}}
+
+[data]
+  name = "Nathanaël Derousseaux"
+  email = "n.derousseaux@icloud.com"
+  decrypt_ssh = {{ $decrypt_ssh }}
+
+{{ if $decrypt_ssh -}}
+[age]
+  identity = "~/.config/chezmoi/key.txt"
+  recipient = "age1upmjypmztz83w8ahd7wqa9n5twq6z0g9fn8nthmnyu3qd3j6ea2sjm63vy"
+{{ end -}}

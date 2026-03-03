@@ -18,7 +18,7 @@ Mes fichiers de configuration, gérés avec [chezmoi](https://chezmoi.io/).
 ### Liste des outils principaux
 - Zsh
 - vim
-- SSH (`~/.ssh/rsa_keys`et `~/.ssh/config.d/` sont masqués, pour des raisons de sécurité évidentes.)
+- SSH (`~/.ssh/` est chiffré avec [age](https://age-encryption.org/) via chezmoi. Les clés privées `~/.ssh/rsa_keys/priv/` restent exclues du repo.)
 - Ghostty
 
 Le tout avec la police `JetBrains Mono` et le thème `Catpuccin Frappé`.
@@ -26,26 +26,40 @@ Le tout avec la police `JetBrains Mono` et le thème `Catpuccin Frappé`.
 ## 🚀 Usage
 
 ### Installation sur une nouvelle machine
+
 > **macOS** : Avant toute chose, installer les Xcode Command Line Tools :
 > ```bash
-> # Installer Xcode CLI Tools
 > xcode-select --install
-> # Accepter la license
 > sudo xcodebuild -license
 > ```
 
+#### Sans la configuration SSH
+
 ```bash
-sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/bin init --apply nderousseaux
+sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/bin init --apply --promptBool decrypt_ssh=false nderousseaux
 ```
+
+#### Avec la configuration SSH
+
+```bash
+sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/bin init --apply --promptBool decrypt_ssh=true nderousseaux
+```
+
+> La clé secrète age (`AGE-SECRET-KEY-...`) sera demandée pendant l'installation.
+> Les clés privées SSH (`~/.ssh/rsa_keys/priv/`) ne sont pas dans le repo et doivent être copiées manuellement.
+
+---
 
 Ce qui se passe :
 1. chezmoi est installé
-2. Le repo `github.com/nderousseaux/dotfiles` est cloné dans `~/.local/share/chezmoi/`
-3. Le script `run_onchange_before_install-homebrew.sh` est exécuté, installant Homebrew.
-4. Les dotfiles sont déployés au bon endroit (ex: `dot_zshrc` → `~/.zshrc`).
-5. Le script `run_onchange_after_brew-bundle.sh` est exécuté, installant les paquets listés dans `dot_Brewfile` (ex: `zsh`).
+2. Le repo est cloné dans `~/.local/share/chezmoi/`
+3. Homebrew est installé (+ `age` si SSH activé)
+4. Si SSH activé : la clé age est demandée et enregistrée dans `~/.config/chezmoi/key.txt`
+5. Les dotfiles sont déployés (+ `~/.ssh/` déchiffré si SSH activé)
+6. Les paquets Homebrew sont installés via `brew bundle`
 
 > Remplacer `nderousseaux` par le nom d'utilisateur GitHub si le repo est hébergé sous un autre nom.
+
 
 ### Mise à jour depuis le repo
 
