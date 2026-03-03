@@ -1,94 +1,102 @@
 # Dotfiles
 
-La configuration de mon environnement de développement, versionnée et réplicable sur n'importe quelle machine.
-
-
 ## 📋 About
 
-Mes fichiers de configuration, gérés avec [chezmoi](https://chezmoi.io/).
+Configuration de mon environnement de développement — versionnée et réplicable, gérée avec [chezmoi](https://chezmoi.io/), et chiffrée avec [age](https://age-encryption.org/) pour les fichiers sensibles (clés SSH, etc).
+
+Police : `JetBrains Mono` · Thème : `Catppuccin Frappé`
 
 
 ## 📦 What's Inside ?
 
-- **Script d'installation** : `run_onchange_before_install-homebrew.sh`, s'exécute avant l'installation des dotfiles, pour installer Homebrew, et `run_onchange_after_brew-bundle.sh`, qui s'exécute après et à chaque modification du Brewfile.
-- **Brewfile** : `dot_Brewfile` (→ `~/.Brewfile`), liste les paquets Homebrew à installer. Exécuté automatiquement via `run_onchange_after_brew-bundle.sh` à chaque changement.
-- **Fichiers de configuration** : `dot_zshrc` (→ `~/.zshrc`), `dot_vimrc` (→ `~/.vimrc`), etc...
-
-
-### Liste des outils principaux
+**Outils principaux configurés :**
 - Zsh
-- vim
-- SSH (`~/.ssh/` est chiffré avec [age](https://age-encryption.org/) via chezmoi. Les clés privées `~/.ssh/rsa_keys/priv/` restent exclues du repo.)
+- Vim
+- SSH
 - Ghostty
 
-Le tout avec la police `JetBrains Mono` et le thème `Catpuccin Frappé`.
+**Scripts automatiques :**
+- `.setup-age.sh` — prépare le binaire `age` et la clé de déchiffrement avant le déploiement
+- `run_onchange_before_install-homebrew.sh` — installe Homebrew avant le déploiement
+- `run_onchange_after_brew-bundle.sh` — exécute `brew bundle` à chaque modification du Brewfile
+- `run_after_cleanup-age.sh` — nettoie les binaires age/chezmoi temporaires après déploiement
+
+> Les clés privées SSH (`~/.ssh/rsa_keys/priv/`) sont **exclues du repo** et doivent être copiées manuellement.
+
 
 ## 🚀 Usage
 
 ### Installation sur une nouvelle machine
 
-> **macOS** : Avant toute chose, installer les Xcode Command Line Tools :
+> **macOS** : Installer les Xcode Command Line Tools en premier :
 > ```bash
-> xcode-select --install
-> sudo xcodebuild -license
+> xcode-select --install && sudo xcodebuild -license
 > ```
 
-#### Sans la configuration SSH
-
 ```bash
-sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/bin init --apply --promptBool decrypt_ssh=false nderousseaux
+sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/bin init --apply nderousseaux
 ```
 
-#### Avec la configuration SSH (fichier `~/.ssh/` chiffré avec age)
+chezmoi demandera interactivement :
+1. **Déchiffrer les fichiers personnels ?** → `yes` ou `no`
+2. Si oui → **Clé secrète age** (`AGE-SECRET-KEY-...`, stockée dans `~/.config/chezmoi/key.txt`)
 
-```bash
-sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/bin init --apply --promptBool decrypt_ssh=true nderousseaux
-```
-
-> La clé secrète age (`AGE-SECRET-KEY-...`) sera demandée pendant l'installation.
-> Les clés privées SSH (`~/.ssh/rsa_keys/priv/`) ne sont pas dans le repo et doivent être copiées manuellement.
-
----
-
-Ce qui se passe :
-1. chezmoi est installé
+Déroulement automatique :
+1. chezmoi s'installe dans `~/bin/`
 2. Le repo est cloné dans `~/.local/share/chezmoi/`
-3. Homebrew est installé
-4. Les dotfiles sont déployés (ex: `dot_zshrc` → `~/.zshrc`)
-5. Les paquets Homebrew sont installés via `brew bundle` (dont `age`)
-6. Si SSH activé : la clé age est demandée, puis `~/.ssh/` est déchiffré et déployé automatiquement
+3. Si déchiffrement activé : `age` est installé et tous les fichiers privés sont déchiffrés (~/.ssh/ et autres)
+4. Homebrew est installé
+5. Les dotfiles sont déployés
+6. `brew bundle` installe tous les paquets
 
-> Remplacer `nderousseaux` par le nom d'utilisateur GitHub si le repo est hébergé sous un autre nom.
-
-
-### Mise à jour depuis le repo
+### Opérations courantes
 
 ```bash
+# Mettre à jour depuis le repo
 chezmoi update
-```
 
-### Éditer les dotfiles
-
-```bash
-# Éditer via chezmoi
+# Éditer un fichier géré
 chezmoi edit ~/.fichier
 
-# Voir les différences
+# Voir les différences avant application
 chezmoi diff
 
 # Appliquer les changements
 chezmoi apply
 
+# Rattraper une modification manuelle
+chezmoi re-add ~/.fichier
+
 # Commit et push
-chezmoi git add .
-chezmoi git commit -m "Update dotfiles"
-chezmoi git push
+chezmoi git add . && chezmoi git commit -m "msg" && chezmoi git push
 ```
 
-### Rattraper une modification manuelle
+### Gérer les fichiers chiffrés (age)
 
 ```bash
-chezmoi re-add ~/.fichier
+# Ajouter un nouveau fichier chiffré au repo
+chezmoi add --encrypt ~/.fichier-secret
+
+# Modifier un fichier chiffré existant
+chezmoi edit ~/.fichier-secret
+
+# Déchiffrer et lire un fichier manuellement
+chezmoi decrypt ~/.local/share/chezmoi/encrypted_fichier.age
+
+# Rechiffrer un fichier après modification de la clé age
+chezmoi re-add --encrypt ~/.fichier-secret
 ```
 
+> Les fichiers chiffrés sont stockés avec le préfixe `encrypted_` et l'extension `.age` dans le repo.
+
+### Forcer la reconfiguration (changer la clé age, activer/désactiver le déchiffrement)
+
+```bash
+chezmoi init --apply --prompt
+```
+
+---
+
 ## 🗺️ Roadmap
+- [ ] Faire gérer les clés privées SSH par une Yubikey
+- [ ] Faire gérer la clé AGE par une Yubikey

@@ -1,15 +1,6 @@
 README.md
 
-# Les clés privées SSH ne sont jamais gérées par chezmoi
-.ssh/rsa_keys/priv/
-
-{{ if not .decrypt_ssh }}
-# decrypt_ssh désactivé : on ignore tout .ssh/
+{{ if not .decrypt_private }}
+# decrypt_private désactivé : on ignore tout .ssh/
 .ssh/
-{{ else }}
-{{   if not (stat (joinPath .chezmoi.homeDir ".config/chezmoi/key.txt")) }}
-# La clé age n'existe pas encore : on ignore .ssh/ en attendant
-# (le script after va la demander et relancer chezmoi)
-.ssh/
-{{   end }}
 {{ end }}

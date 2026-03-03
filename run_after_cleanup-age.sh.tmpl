@@ -1,0 +1,11 @@
+#!/bin/bash
+# Nettoyage age quand decrypt_private est désactivé
+# decrypt_private: {{ .decrypt_private }}
+
+{{ if not .decrypt_private -}}
+rm -f "$HOME/bin/age"
+if [ -f "$HOME/.config/chezmoi/key.txt" ]; then
+  rm -f "$HOME/.config/chezmoi/key.txt"
+  echo "🧹 Clé age supprimée"
+fi
+{{ end -}}
