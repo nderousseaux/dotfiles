@@ -15,8 +15,8 @@
 		chmod +x \"$DEST/\"* 2>/dev/null || true; \
 		echo \"Hooks installés depuis $TEMPLATE vers $DEST\"; \
 	}; f"
-	work-email = !git config user.email "{{ .work_email }}" && echo "Email set to work address"
-	perso-email = !git config user.email "{{ .personal_email }}" && echo "Email set to personal address"
+	work-email = !git config user.email "{{ .email_work }}" && echo "Email set to work address"
+	perso-email = !git config user.email "{{ .email }}" && echo "Email set to personal address"
 
 [core]
 	editor = vim
