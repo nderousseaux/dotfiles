@@ -13,6 +13,7 @@ brew "fd"
 brew "git"
 brew "git-lfs"
 brew "gh"
+brew "gnupg"
 
 # Chiffrement (requis pour déchiffrer ~/.ssh/)
 brew "age"
