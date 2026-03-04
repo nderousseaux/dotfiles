@@ -1,0 +1,110 @@
+#!/bin/bash
+
+COMMIT_MSG_FILE=$1
+PREFIX_BASE="📦 base"
+PREFIX_FEAT="✨ feat"
+PREFIX_DESIGN="🎨 design"
+PREFIX_FIX="🐛 fix"
+PREFIX_TEST="🧪 test"
+PREFIX_BUILD="🏗️ build"
+PREFIX_STRUCT="🧱 struct"
+PREFIX_DOC="📚 doc"
+PREFIX_INTERNAL="🔧 internal"
+PREFIX_PERF="⚡️ perf"
+PREFIX_REFACTOR="🚜 refactor"
+PREFIX_TYPO="✏️ typo"
+PREFIX_WIP="🚧 wip"
+PREFIX_META="📝 meta"
+PREFIX_CONFIG="⚙️ config"
+PREFIX_I18N="🌍 i18n"
+PREFIX_CLEAN="🧹 clean"
+PREFIX_LINT="🔍 lint"
+PREFIX_REMOVE="🗑️ remove"
+PREFIX_REV="🔖 rev"
+PREFIX_MERGE="🔀 merge"
+
+
+# Ajoute le bon emoji en fonction du type de commit (format attendu : "motclé: message")
+if grep -q "^base:" "$COMMIT_MSG_FILE"; then
+    sed -i "" "s/^base:/$PREFIX_BASE:/" "$COMMIT_MSG_FILE"
+fi
+
+if grep -q "^feat:" "$COMMIT_MSG_FILE"; then
+    sed -i "" "s/^feat:/$PREFIX_FEAT:/" "$COMMIT_MSG_FILE"
+fi
+
+if grep -q "^design:" "$COMMIT_MSG_FILE"; then
+    sed -i "" "s/^design:/$PREFIX_DESIGN:/" "$COMMIT_MSG_FILE"
+fi
+
+if grep -q "^fix:" "$COMMIT_MSG_FILE"; then
+    sed -i "" "s/^fix:/$PREFIX_FIX:/" "$COMMIT_MSG_FILE"
+fi
+
+if grep -q "^test:" "$COMMIT_MSG_FILE"; then
+    sed -i "" "s/^test:/$PREFIX_TEST:/" "$COMMIT_MSG_FILE"
+fi
+
+if grep -q "^build:" "$COMMIT_MSG_FILE"; then
+    sed -i "" "s/^build:/$PREFIX_BUILD:/" "$COMMIT_MSG_FILE"
+fi
+
+if grep -q "^struct:" "$COMMIT_MSG_FILE"; then
+    sed -i "" "s/^struct:/$PREFIX_STRUCT:/" "$COMMIT_MSG_FILE"
+fi
+
+if grep -q "^doc:" "$COMMIT_MSG_FILE"; then
+    sed -i "" "s/^doc:/$PREFIX_DOC:/" "$COMMIT_MSG_FILE"
+fi
+
+if grep -q "^internal:" "$COMMIT_MSG_FILE"; then
+    sed -i "" "s/^internal:/$PREFIX_INTERNAL:/" "$COMMIT_MSG_FILE"
+fi
+
+if grep -q "^perf:" "$COMMIT_MSG_FILE"; then
+    sed -i "" "s/^perf:/$PREFIX_PERF:/" "$COMMIT_MSG_FILE"
+fi
+
+if grep -q "^refactor:" "$COMMIT_MSG_FILE"; then
+    sed -i "" "s/^refactor:/$PREFIX_REFACTOR:/" "$COMMIT_MSG_FILE"
+fi
+
+if grep -q "^typo:" "$COMMIT_MSG_FILE"; then
+    sed -i "" "s/^typo:/$PREFIX_TYPO:/" "$COMMIT_MSG_FILE"
+fi
+
+if grep -q "^wip:" "$COMMIT_MSG_FILE"; then
+    sed -i "" "s/^wip:/$PREFIX_WIP:/" "$COMMIT_MSG_FILE"
+fi
+
+if grep -q "^meta:" "$COMMIT_MSG_FILE"; then
+    sed -i "" "s/^meta:/$PREFIX_META:/" "$COMMIT_MSG_FILE"
+fi
+
+if grep -q "^config:" "$COMMIT_MSG_FILE"; then
+    sed -i "" "s/^config:/$PREFIX_CONFIG:/" "$COMMIT_MSG_FILE"
+fi
+
+if grep -q "^i18n:" "$COMMIT_MSG_FILE"; then
+    sed -i "" "s/^i18n:/$PREFIX_I18N:/" "$COMMIT_MSG_FILE"
+fi
+
+if grep -q "^clean:" "$COMMIT_MSG_FILE"; then
+    sed -i "" "s/^clean:/$PREFIX_CLEAN:/" "$COMMIT_MSG_FILE"
+fi
+
+if grep -q "^lint:" "$COMMIT_MSG_FILE"; then
+    sed -i "" "s/^lint:/$PREFIX_LINT:/" "$COMMIT_MSG_FILE"
+fi
+
+if grep -q "^remove:" "$COMMIT_MSG_FILE"; then
+    sed -i "" "s/^remove:/$PREFIX_REMOVE:/" "$COMMIT_MSG_FILE"
+fi
+
+if grep -q "^rev:" "$COMMIT_MSG_FILE"; then
+    sed -i "" "s/^rev:/$PREFIX_REV:/" "$COMMIT_MSG_FILE"
+fi
+
+if grep -q "^merge:" "$COMMIT_MSG_FILE"; then
+    sed -i "" "s/^merge:/$PREFIX_MERGE:/" "$COMMIT_MSG_FILE"
+fi

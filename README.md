@@ -14,6 +14,10 @@ Police : `JetBrains Mono` · Thème : `Catppuccin Frappé`
 - Vim
 - SSH
 - Ghostty
+- Git
+
+**Cheatsheet :**
+On peut trouver une cheatsheet détaillée des commandes et configurations dans [CHEATSHEET.md](./CHEATSHEET.md), qui devrait se retrouver dans `~./CHEATSHEET.md` après déploiement.
 
 **Scripts automatiques :**
 - `.setup-age.sh` — prépare le binaire `age` et la clé de déchiffrement avant le déploiement
