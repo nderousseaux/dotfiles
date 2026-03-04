@@ -51,6 +51,8 @@
 
 ## Zsh
 
+La touche `option` de gauche est comprise comme `alt` pour le terminal, et le `option` de droite permet de tapper des caractères spéciaux de macOS (ex: `option+n` → `~`).
+
 ### Alias
 
 | Alias | Commande |

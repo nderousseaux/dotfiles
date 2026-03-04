@@ -26,7 +26,11 @@ shell-integration = zsh
 # Clavier
 # ---------------------------------------------------------------------------
 # Envoie des séquences d'échappement pour Alt/Option (requis pour fzf Alt+C, etc.)
-macos-option-as-alt = true
+# Uniquement Option gauche = Alt, Option droite reste pour les caractères AZERTY (ex: ~)
+macos-option-as-alt = left
+
+# Ctrl+L : laisser passer le caractère brut (\x0c) pour que ça fonctionne aussi en SSH
+keybind = ctrl+l=unbind
 
 # ---------------------------------------------------------------------------
 # Comportement

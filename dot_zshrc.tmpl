@@ -44,6 +44,21 @@ setopt PROMPT_SUBST
 PROMPT='%F{cyan}%~%f%F{yellow}${vcs_info_msg_0_}%f %# '
 
 # ---------------------------------------------------------------------------
+# ZLE — édition de la ligne de commande
+# ---------------------------------------------------------------------------
+# Ctrl+X Ctrl+E : ouvrir la commande en cours dans $EDITOR
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
+
+# ---------------------------------------------------------------------------
+# SSH — compatibilité terminfo
+# ---------------------------------------------------------------------------
+# Ghostty utilise TERM=xterm-ghostty, absent sur la plupart des serveurs.
+# On force xterm-256color pour les connexions SSH.
+ssh() { TERM=xterm-256color command ssh "$@" }
+
+# ---------------------------------------------------------------------------
 # Alias
 # ---------------------------------------------------------------------------
 alias ls='ls --color=auto'
