@@ -1,4 +1,5 @@
 README.md
+ROADMAP.md
 
 {{ if not .decrypt_private }}
 # decrypt_private désactivé : on ignore tout .ssh/
