@@ -33,6 +33,7 @@
 |---|---|
 | `ll` / `la` | `ls -lh` / `ls -lah` |
 | `..` / `...` | `cd ..` / `cd ../..` |
+| `j <query>` | Aller dans un dossier visité (autojump) |
 | `bssh` | SSH via bastion avec keepalive |
 
 ### fzf

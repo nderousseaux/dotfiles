@@ -82,6 +82,15 @@ alias bssh='ssh -o ServerAliveInterval=10 -o ServerAliveCountMax=3 -t bastion --
 alias dpda="docker run --rm --volume "$PWD":/mnt --workdir /mnt -u 1000:1000 -i -t pdagog/refc"
 
 # ---------------------------------------------------------------------------
+# autojump — navigation rapide par historique
+# ---------------------------------------------------------------------------
+if command -v autojump &>/dev/null; then
+  _aj_script="$(brew --prefix)/etc/profile.d/autojump.sh"
+  [[ -f "$_aj_script" ]] && source "$_aj_script"
+  alias j='autojump'
+fi
+
+# ---------------------------------------------------------------------------
 # fzf — fuzzy finder
 # ---------------------------------------------------------------------------
 if command -v fzf &>/dev/null; then
