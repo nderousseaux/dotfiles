@@ -13,7 +13,7 @@ Police : `JetBrains Mono` · Thème : `Catppuccin Frappé`
 - Zsh
 - Vim
 - SSH
-- GPG (signature de commits)
+- GPG
 - Ghostty
 - Git
 
