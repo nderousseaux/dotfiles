@@ -6,7 +6,6 @@ Configuration de mon environnement de développement — versionnée et réplica
 
 Police : `JetBrains Mono` · Thème : `Catppuccin Frappé`
 
-
 ## 📦 What's Inside ?
 
 **Outils principaux configurés :**
@@ -16,14 +15,17 @@ Police : `JetBrains Mono` · Thème : `Catppuccin Frappé`
 - Ghostty
 - Git
 
-**Cheatsheet :**
-On peut trouver une cheatsheet détaillée des commandes et configurations dans [CHEATSHEET.md](./CHEATSHEET.md), qui devrait se retrouver dans `~./CHEATSHEET.md` après déploiement.
+**Structure mise en place :**
+- Un dossier `~/ref/` sera crée, contenant [`ENV-CHEATSHEET.md`](./ref/ENV-CHEATSHEET.md), document de référence pour la configuration.
+- Un dossier `~/dev/` sera crée, pour y regrouper tous les projets de développement.
+
 
 **Scripts automatiques :**
 - `.setup-age.sh` — prépare le binaire `age` et la clé de déchiffrement avant le déploiement
 - `run_onchange_before_install-homebrew.sh` — installe Homebrew avant le déploiement
 - `run_onchange_after_brew-bundle.sh` — exécute `brew bundle` à chaque modification du Brewfile
 - `run_after_cleanup-age.sh` — nettoie les binaires age/chezmoi temporaires après déploiement
+- `run_onchange_before_install-oh-my-zsh.sh.tmp` — installe Oh My Zsh avant le déploiement
 
 > Les clés privées SSH (`~/.ssh/rsa_keys/priv/`) sont **exclues du repo** et doivent être copiées manuellement.
 
