@@ -106,10 +106,3 @@ chezmoi re-add --encrypt ~/.fichier-secret
 ```bash
 chezmoi init --apply --prompt
 ```
-
-
-## 🗺️ Roadmap
-- [ ] Rendre compatible avec Linux
-- [ ] Mettre en place PGP
-- [ ] Faire gérer la clé AGE par une Yubikey (on peut pas utiliser PGP ?)
-- [ ] Faire passer toutes mes clés SSH en Clés hérités des mes identtités PGP
