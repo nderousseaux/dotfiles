@@ -87,7 +87,7 @@ La touche `option` de gauche est comprise comme `alt` pour le terminal, et le `o
 | `git yolo` | Commit avec un message aléatoire (whatthecommit.com) |
 | `git install-hooks` | Copie les hooks depuis `~/.config/git/template/hooks` |
 | `git work-email` | Passe l'email du dépôt à `n.derousseaux@unistra.fr` |
-| `git perso-email` | Passe l'email du dépôt à `n.derousseaux@icloud.com` |
+| `git perso-email` | Passe l'email du dépôt à `nldx@nldx.sh` |
 
 ### Configuration notable
 
