@@ -1,0 +1,19 @@
+#!/bin/bash
+# Installe Oh My Zsh si non présent
+
+{{ if eq .chezmoi.os "linux" "darwin" -}}
+
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+  echo "📦 Installation de Oh My Zsh..."
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" \
+    --unattended \
+    --keep-zshrc || {
+    echo "❌ L'installation de Oh My Zsh a échoué."
+    exit 1
+  }
+  echo "✅ Oh My Zsh installé avec succès"
+else
+  echo "✅ Oh My Zsh est déjà installé"
+fi
+
+{{ end -}}

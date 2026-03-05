@@ -12,7 +12,27 @@ export EDITOR="vim"
 export VISUAL="vim"
 
 # ---------------------------------------------------------------------------
-# Historique
+# Oh My Zsh — configuration minimale
+# ---------------------------------------------------------------------------
+export ZSH="$HOME/.oh-my-zsh"
+export ZSH_CUSTOM="$HOME/.oh-my-zsh-custom"
+ZSH_THEME="minimal-nd"
+
+# Pas de mise à jour auto (géré par chezmoi)
+zstyle ':omz:update' mode disabled
+
+# Plugins : complétion et alias utiles, rien de plus
+plugins=(
+  git              # alias git (ga, gco, gst…)
+  docker           # complétion docker
+  kubectl          # complétion kubectl + alias (k)
+  terraform        # complétion terraform
+)
+
+source "$ZSH/oh-my-zsh.sh"
+
+# ---------------------------------------------------------------------------
+# Historique (complète / surcharge les réglages d'omz)
 # ---------------------------------------------------------------------------
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000
@@ -28,20 +48,9 @@ setopt AUTO_CD                # Tape un dossier pour y aller directement
 setopt CORRECT                # Suggestions de correction de commandes
 
 # ---------------------------------------------------------------------------
-# Complétion
+# Complétion (affinements au-dessus d'omz)
 # ---------------------------------------------------------------------------
-autoload -Uz compinit && compinit
-zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'  # Insensible à la casse
-
-# ---------------------------------------------------------------------------
-# Prompt
-# ---------------------------------------------------------------------------
-autoload -Uz vcs_info
-precmd() { vcs_info }
-zstyle ':vcs_info:git:*' formats ' (%b)'
-setopt PROMPT_SUBST
-PROMPT='%F{cyan}%~%f%F{yellow}${vcs_info_msg_0_}%f %# '
 
 # ---------------------------------------------------------------------------
 # ZLE — édition de la ligne de commande
@@ -70,6 +79,7 @@ alias ...='cd ../..'
 
 # Alias spéciaux
 alias bssh='ssh -o ServerAliveInterval=10 -o ServerAliveCountMax=3 -t bastion --'
+alias dpda="docker run --rm --volume "$PWD":/mnt --workdir /mnt -u 1000:1000 -i -t pdagog/refc"
 
 # ---------------------------------------------------------------------------
 # fzf — fuzzy finder
@@ -107,4 +117,3 @@ if command -v fzf &>/dev/null; then
   export FZF_CTRL_T_OPTS="--preview '[ -d {} ] && ${_fzf_dir_preview} || ${_fzf_file_preview}'"
   export FZF_ALT_C_OPTS="--preview '${_fzf_dir_preview}'"
 fi
-
