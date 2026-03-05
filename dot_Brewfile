@@ -8,6 +8,7 @@ brew "vim"
 brew "fzf"
 brew "bat"
 brew "fd"
+brew "glow"
 
 # Git
 brew "git"
