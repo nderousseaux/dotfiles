@@ -22,6 +22,7 @@ PREFIX_LINT="🔍 lint"
 PREFIX_REMOVE="🗑️ remove"
 PREFIX_REV="🔖 rev"
 PREFIX_MERGE="🔀 merge"
+PREFIX_ADD="➕ add"
 
 
 # Ajoute le bon emoji en fonction du type de commit (format attendu : "motclé: message")
@@ -107,4 +108,8 @@ fi
 
 if grep -q "^merge:" "$COMMIT_MSG_FILE"; then
     sed -i "" "s/^merge:/$PREFIX_MERGE:/" "$COMMIT_MSG_FILE"
+fi
+
+if grep -q "^add:" "$COMMIT_MSG_FILE"; then
+    sed -i "" "s/^add:/$PREFIX_ADD:/" "$COMMIT_MSG_FILE"
 fi

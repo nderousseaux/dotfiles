@@ -126,6 +126,7 @@ Il suffit de commencer le message par le **mot-clé suivi de `:`**, l'emoji est 
 
 | Mot-clé | Préfixe affiché | Usage |
 |---|---|---|
+| `add` | ➕ add | Ajout de fichier ou de code |
 | `feat` | ✨ feat | Nouvelle fonctionnalité |
 | `fix` | 🐛 fix | Correction de bug |
 | `perf` | ⚡️ perf | Amélioration de performance |
