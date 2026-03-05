@@ -1,80 +1,64 @@
-# Cheatsheet — Raccourcis, commandes et conventions
+# Cheatsheet
 
-## Vim
+## Vim _(Leader : `Espace`)_
 
-> Leader : `Espace`
-
-### Généraux
-
-| Raccourci | Mode | Action |
-|---|---|---|
-| `Ctrl+S` | Normal / Insert | Sauvegarder |
-| `Ctrl+Q` | Normal | Quitter |
-| `Ctrl+A` | Normal | Tout sélectionner |
-| `Ctrl+Z` | Normal | Annuler |
-| `Ctrl+Y` | Normal | Rétablir |
-| `Ctrl+C` | Visuel | Copier dans le presse-papiers |
-
-### Navigation
-
-| Raccourci | Mode | Action |
-|---|---|---|
-| `Ctrl+H` | Normal | Fenêtre de gauche |
-| `Ctrl+J` | Normal | Fenêtre du bas |
-| `Ctrl+K` | Normal | Fenêtre du haut |
-| `Ctrl+L` | Normal | Fenêtre de droite |
-| `Leader bn` | Normal | Buffer suivant |
-| `Leader bp` | Normal | Buffer précédent |
-| `Leader bd` | Normal | Fermer le buffer |
-| `Leader e` | Normal | Explorateur de fichiers |
-
-### Édition
-
-| Raccourci | Mode | Action |
-|---|---|---|
-| `Alt+J` | Normal / Visuel | Déplacer la ligne vers le bas |
-| `Alt+K` | Normal / Visuel | Déplacer la ligne vers le haut |
-| `Tab` | Normal / Visuel | Indenter |
-| `Shift+Tab` | Normal / Visuel | Désindenter |
-| `Leader y` | Visuel | Copier dans le clipboard système |
-| `Leader Y` | Normal | Copier jusqu'à la fin de ligne dans le clipboard système |
-| `Leader Espace` | Normal | Effacer le surlignage de recherche |
-
-### Plugins
-
-| Plugin | Rôle |
+| Raccourci | Action |
 |---|---|
-| `auto-pairs` | Fermeture auto des parenthèses / guillemets |
-| `catppuccin` | Thème (variante Frappé) |
+| `Ctrl+S` | Sauvegarder |
+| `Ctrl+Q` | Quitter |
+| `Ctrl+A` | Tout sélectionner |
+| `Ctrl+Z` / `Ctrl+Y` | Annuler / Rétablir |
+| `Ctrl+C` _(visuel)_ | Copier dans le presse-papiers |
+| `Ctrl+H/J/K/L` | Fenêtre gauche / bas / haut / droite |
+| `Leader bn` / `bp` | Buffer suivant / précédent |
+| `Leader bd` | Fermer le buffer |
+| `Leader e` | Explorateur de fichiers |
+| `Alt+J` / `Alt+K` | Déplacer la ligne bas / haut |
+| `Tab` / `Shift+Tab` | Indenter / Désindenter |
+| `Leader y` _(visuel)_ | Copier dans le clipboard système |
+| `Leader Y` | Copier jusqu'à fin de ligne |
+| `Leader Espace` | Effacer le surlignage |
+
+**Plugins :** `auto-pairs` (fermeture auto) · `catppuccin` (thème Frappé)
 
 ---
 
 ## Zsh
 
-La touche `option` de gauche est comprise comme `alt` pour le terminal, et le `option` de droite permet de tapper des caractères spéciaux de macOS (ex: `option+n` → `~`).
+> `⌥ gauche` = `Alt` · `⌥ droite` = caractères spéciaux (ex: `⌥n` → `~`)
 
 ### Alias
 
-| Alias | Commande |
+| Alias | → |
 |---|---|
-| `ls` | `ls --color=auto` |
-| `ll` | `ls -lh` |
-| `la` | `ls -lah` |
-| `grep` | `grep --color=auto` |
-| `..` | `cd ..` |
-| `...` | `cd ../..` |
-| `bssh` | `ssh -o ServerAliveInterval=10 -o ServerAliveCountMax=3 -t bastion --` |
+| `ll` / `la` | `ls -lh` / `ls -lah` |
+| `..` / `...` | `cd ..` / `cd ../..` |
+| `bssh` | SSH via bastion avec keepalive |
 
 ### fzf
 
 | Raccourci | Action |
 |---|---|
-| `Ctrl+T` | Recherche fuzzy de fichiers (avec aperçu bat/tree) |
-| `Alt+C` | Recherche fuzzy de dossiers (avec aperçu tree/ls) |
-| `Ctrl+R` | Recherche fuzzy dans l'historique |
-| `?` | Activer/désactiver l'aperçu |
+| `Ctrl+T` | Fichiers (aperçu `bat`) |
+| `Alt+C` | Dossiers (aperçu `tree`) |
+| `Ctrl+R` | Historique |
+| `?` | Toggle aperçu |
 
-> **fd** est utilisé à la place de `find` quand il est disponible.
+> `fd` remplace `find` automatiquement.
+
+---
+
+## Outils CLI
+
+| Outil | Usage |
+|---|---|
+| `bat` | `cat` avec coloration syntaxique |
+| `fd` | `find` moderne et rapide |
+| `fzf` | Recherche fuzzy interactive |
+| `glow` | Rendu Markdown dans le terminal |
+| `tldr` | Pages de man simplifiées |
+| `tree` | Arborescence de répertoires |
+| `gh` | GitHub CLI |
 
 ---
 
@@ -84,26 +68,24 @@ La touche `option` de gauche est comprise comme `alt` pour le terminal, et le `o
 
 | Alias | Action |
 |---|---|
-| `git yolo` | Commit avec un message aléatoire (whatthecommit.com) |
-| `git install-hooks` | Copie les hooks depuis `~/.config/git/template/hooks` |
-| `git work-email` | Passe l'email du dépôt à `n.derousseaux@unistra.fr` |
-| `git perso-email` | Passe l'email du dépôt à `nldx@nldx.sh` |
+| `git yolo` | Commit message aléatoire (whatthecommit.com) |
+| `git install-hooks` | Installe les hooks depuis `~/.config/git/template/hooks` |
+| `git work-email` | Email → `n.derousseaux@unistra.fr` |
+| `git perso-email` | Email → `nldx@nldx.sh` |
 
-### Configuration notable
+### Config
 
-| Clé | Valeur | Effet |
-|---|---|---|
-| `merge.ff` | `no` | Toujours créer un commit de merge (pas de fast-forward) |
-| `branch.autosetuprebase` | `always` | Rebase automatique au pull |
-| `init.templateDir` | `~/.config/git/template` | Hooks installés par défaut dans les nouveaux dépôts |
+| Clé | Effet |
+|---|---|
+| `merge.ff = no` | Toujours un commit de merge (pas de fast-forward) |
+| `branch.autosetuprebase = always` | Rebase automatique au pull |
+| `init.templateDir` | Hooks auto dans les nouveaux dépôts |
 
 ---
 
 ## Conventions de commit
 
-Le hook `prepare-commit-msg` transforme automatiquement le préfixe du message de commit en emoji.
-
-Il suffit de commencer le message par le **mot-clé suivi de `:`**, l'emoji est ajouté automatiquement.
+> Le hook `prepare-commit-msg` ajoute l'emoji automatiquement. Format : `mot-clé: message`
 
 | Mot-clé | Préfixe affiché | Usage |
 |---|---|---|
@@ -130,10 +112,6 @@ Il suffit de commencer le message par le **mot-clé suivi de `:`**, l'emoji est 
 | `base` | 📦 base | Fondations, socle initial |
 | `wip` | 🚧 wip | Travail en cours |
 
-
-### Exemple
-
 ```bash
-git commit -m "feat: ajout de la recherche fuzzy"
-# → ✨ feat: ajout de la recherche fuzzy
+git commit -m "feat: ajout de la recherche fuzzy"  # → ✨ feat: ajout de la recherche fuzzy
 ```
