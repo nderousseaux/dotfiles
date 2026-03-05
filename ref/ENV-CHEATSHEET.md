@@ -1,28 +1,5 @@
 # Cheatsheet
 
-## Vim _(Leader : `Espace`)_
-
-| Raccourci | Action |
-|---|---|
-| `Ctrl+S` | Sauvegarder |
-| `Ctrl+Q` | Quitter |
-| `Ctrl+A` | Tout sélectionner |
-| `Ctrl+Z` / `Ctrl+Y` | Annuler / Rétablir |
-| `Ctrl+C` _(visuel)_ | Copier dans le presse-papiers |
-| `Ctrl+H/J/K/L` | Fenêtre gauche / bas / haut / droite |
-| `Leader bn` / `bp` | Buffer suivant / précédent |
-| `Leader bd` | Fermer le buffer |
-| `Leader e` | Explorateur de fichiers |
-| `Alt+J` / `Alt+K` | Déplacer la ligne bas / haut |
-| `Tab` / `Shift+Tab` | Indenter / Désindenter |
-| `Leader y` _(visuel)_ | Copier dans le clipboard système |
-| `Leader Y` | Copier jusqu'à fin de ligne |
-| `Leader Espace` | Effacer le surlignage |
-
-**Plugins :** `auto-pairs` (fermeture auto) · `catppuccin` (thème Frappé)
-
----
-
 ## Zsh
 
 > `⌥ gauche` = `Alt` · `⌥ droite` = caractères spéciaux (ex: `⌥n` → `~`)
@@ -47,7 +24,6 @@
 
 > `fd` remplace `find` automatiquement.
 
----
 
 ## Outils CLI
 
@@ -55,13 +31,32 @@
 |---|---|
 | `bat` | `cat` avec coloration syntaxique |
 | `fd` | `find` moderne et rapide |
-| `fzf` | Recherche fuzzy interactive |
 | `glow` | Rendu Markdown dans le terminal |
 | `tldr` | Pages de man simplifiées |
-| `tree` | Arborescence de répertoires |
 | `gh` | GitHub CLI |
 
----
+
+## Vim _(Leader : `Espace`)_
+
+| Raccourci | Action |
+|---|---|
+| `Ctrl+S` | Sauvegarder |
+| `Ctrl+Q` | Quitter |
+| `Ctrl+A` | Tout sélectionner |
+| `Ctrl+Z` / `Ctrl+Y` | Annuler / Rétablir |
+| `Ctrl+C` _(visuel)_ | Copier dans le presse-papiers |
+| `Ctrl+H/J/K/L` | Fenêtre gauche / bas / haut / droite |
+| `Leader bn` / `bp` | Buffer suivant / précédent |
+| `Leader bd` | Fermer le buffer |
+| `Leader e` | Explorateur de fichiers |
+| `Alt+J` / `Alt+K` | Déplacer la ligne bas / haut |
+| `Tab` / `Shift+Tab` | Indenter / Désindenter |
+| `Leader y` _(visuel)_ | Copier dans le clipboard système |
+| `Leader Y` | Copier jusqu'à fin de ligne |
+| `Leader Espace` | Effacer le surlignage |
+
+**Plugins :** `auto-pairs` (fermeture auto) · `catppuccin` (thème Frappé)
+
 
 ## Git
 
@@ -82,9 +77,8 @@
 | `branch.autosetuprebase = always` | Rebase automatique au pull |
 | `init.templateDir` | Hooks auto dans les nouveaux dépôts |
 
----
 
-## Conventions de commit
+### Conventions de commit
 
 > Le hook `prepare-commit-msg` ajoute l'emoji automatiquement. Format : `mot-clé: message`
 
