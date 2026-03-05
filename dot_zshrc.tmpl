@@ -145,3 +145,9 @@ if command -v fzf &>/dev/null; then
   export FZF_CTRL_T_OPTS="--preview '[ -d {} ] && ${_fzf_dir_preview} || ${_fzf_file_preview}'"
   export FZF_ALT_C_OPTS="--preview '${_fzf_dir_preview}'"
 fi
+
+# ---------------------------------------------------------------------------
+# zsh-syntax-highlighting — coloration syntaxique (doit être sourcé en dernier)
+# ---------------------------------------------------------------------------
+_zsh_hl="$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+[[ -f "$_zsh_hl" ]] && source "$_zsh_hl"
