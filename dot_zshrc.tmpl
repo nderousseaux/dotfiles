@@ -98,6 +98,18 @@ if command -v autojump &>/dev/null; then
 fi
 
 # ---------------------------------------------------------------------------
+# zsh-autosuggestions — suggestions à la frappe (style fish)
+# ---------------------------------------------------------------------------
+_zas_script="$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+if [[ -f "$_zas_script" ]]; then
+  source "$_zas_script"
+  ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"       # Gris discret
+  ZSH_AUTOSUGGEST_STRATEGY=(history completion) # Historique puis complétion
+  ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=40            # Pas de suggestion sur les longues lignes
+  bindkey '^ ' autosuggest-accept               # Ctrl+Espace pour accepter
+fi
+
+# ---------------------------------------------------------------------------
 # fzf — fuzzy finder
 # ---------------------------------------------------------------------------
 if command -v fzf &>/dev/null; then

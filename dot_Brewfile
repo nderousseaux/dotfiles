@@ -3,6 +3,7 @@
 
 # Shell
 brew "zsh"
+brew "zsh-autosuggestions"
 brew "tree"
 brew "vim"
 brew "fzf"
