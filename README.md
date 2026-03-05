@@ -26,7 +26,7 @@ On peut trouver une cheatsheet détaillée des commandes et configurations dans 
 - `run_onchange_after_brew-bundle.sh` — exécute `brew bundle` à chaque modification du Brewfile
 - `run_after_cleanup-age.sh` — nettoie les binaires age/chezmoi temporaires après déploiement
 
-> Les clés privées SSH (`~/.ssh/rsa_keys/priv/`) et la clé privée GPG (`~/.gnupg/export/private.asc`) sont **exclues du repo** et doivent être copiées manuellement.
+> Les clés privées SSH (`~/.ssh/rsa_keys/priv/`) et la clé privée GPG sont **exclues du repo** et doivent être copiées manuellement.
 
 ## 🚀 Usage
 
