@@ -93,28 +93,9 @@ La touche `option` de gauche est comprise comme `alt` pour le terminal, et le `o
 
 | Clé | Valeur | Effet |
 |---|---|---|
-| `commit.gpgsign` | `true` | Signe tous les commits avec GPG |
-| `tag.gpgsign` | `true` | Signe tous les tags avec GPG |
 | `merge.ff` | `no` | Toujours créer un commit de merge (pas de fast-forward) |
 | `branch.autosetuprebase` | `always` | Rebase automatique au pull |
 | `init.templateDir` | `~/.config/git/template` | Hooks installés par défaut dans les nouveaux dépôts |
-
----
-
-## GPG
-
-### Commandes utiles
-
-| Commande | Action |
-|---|---|
-| `gpg --list-keys --keyid-format long` | Lister les clés publiques |
-| `gpg --list-secret-keys --keyid-format long` | Lister les clés privées |
-| `gpg --import ~/.gnupg/export/private.asc` | Importer la clé privée |
-| `gpg --import ~/.gnupg/export/public.asc` | Importer la clé publique |
-| `gpg --armor --export <KEY_ID>` | Exporter la clé publique (pour GitHub/GitLab) |
-
-> La clé privée GPG doit être importée manuellement sur chaque nouvelle machine.
-> La clé publique est déployée automatiquement par chezmoi (chiffrée avec age).
 
 ---
 

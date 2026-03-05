@@ -2,7 +2,7 @@
 
 ## 📋 About
 
-Configuration de mon environnement de développement — versionnée et réplicable, gérée avec [chezmoi](https://chezmoi.io/), et chiffrée avec [age](https://age-encryption.org/) pour les fichiers sensibles (clés SSH, GPG, etc).
+Configuration de mon environnement de développement — versionnée et réplicable, gérée avec [chezmoi](https://chezmoi.io/), et chiffrée avec [age](https://age-encryption.org/) pour les fichiers sensibles (clés SSH, etc).
 
 Police : `JetBrains Mono` · Thème : `Catppuccin Frappé`
 
@@ -13,7 +13,6 @@ Police : `JetBrains Mono` · Thème : `Catppuccin Frappé`
 - Zsh
 - Vim
 - SSH
-- GPG
 - Ghostty
 - Git
 
@@ -26,7 +25,7 @@ On peut trouver une cheatsheet détaillée des commandes et configurations dans 
 - `run_onchange_after_brew-bundle.sh` — exécute `brew bundle` à chaque modification du Brewfile
 - `run_after_cleanup-age.sh` — nettoie les binaires age/chezmoi temporaires après déploiement
 
-> Les clés privées SSH (`~/.ssh/rsa_keys/priv/`) et la clé privée GPG sont **exclues du repo** et doivent être copiées manuellement.
+> Les clés privées SSH (`~/.ssh/rsa_keys/priv/`) sont **exclues du repo** et doivent être copiées manuellement.
 
 ## 🚀 Usage
 
@@ -48,25 +47,10 @@ chezmoi demandera interactivement :
 Déroulement automatique :
 1. chezmoi s'installe dans `~/bin/`
 2. Le repo est cloné dans `~/.local/share/chezmoi/`
-3. Si déchiffrement activé : `age` est installé et tous les fichiers privés sont déchiffrés (~/.ssh/, ~/.gnupg/ et autres)
+3. Si déchiffrement activé : `age` est installé et tous les fichiers privés sont déchiffrés (~/.ssh/ et autres)
 4. Homebrew est installé
 5. Les dotfiles sont déployés
 6. `brew bundle` installe tous les paquets
-
-### Importer la clé GPG (manuelle)
-
-La clé privée GPG n'est pas dans le repo. Après le premier déploiement :
-
-```bash
-# Copier le fichier private.asc sur la machine, puis :
-gpg --import ~/.gnupg/export/private.asc
-
-# Vérifier l'import
-gpg --list-secret-keys --keyid-format long
-```
-
-> La clé publique est déployée automatiquement (chiffrée avec age dans le repo).
-> Pour l'importer : `gpg --import ~/.gnupg/export/public.asc`
 
 ### Opérations courantes
 

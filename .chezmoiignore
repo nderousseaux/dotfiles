@@ -1,7 +1,6 @@
 README.md
 
 {{ if not .decrypt_private }}
-# decrypt_private désactivé : on ignore tout .ssh/ et .gnupg/
+# decrypt_private désactivé : on ignore tout .ssh/
 .ssh/
-.gnupg/
 {{ end }}
