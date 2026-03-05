@@ -14,6 +14,7 @@ Police : `JetBrains Mono` · Thème : `Catppuccin Frappé`
 - SSH
 - Ghostty
 - Git
+- Tmux (chargé par défaut, invisible, prefix `C-b`)
 
 **Structure mise en place :**
 - Un dossier `~/ref/` sera crée, contenant [`ENV-CHEATSHEET.md`](./ref/ENV-CHEATSHEET.md), document de référence pour la configuration.
