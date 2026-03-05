@@ -86,8 +86,15 @@ alias dpda="docker run --rm --volume "$PWD":/mnt --workdir /mnt -u 1000:1000 -i 
 # ---------------------------------------------------------------------------
 if command -v autojump &>/dev/null; then
   _aj_script="$(brew --prefix)/etc/profile.d/autojump.sh"
-  [[ -f "$_aj_script" ]] && source "$_aj_script"
-  alias j='autojump'
+
+  # Évite les conflits au rechargement du shell
+  unalias j 2>/dev/null
+
+  # Charge autojump une seule fois
+  if [[ -z "${_AUTOJUMP_LOADED:-}" && -f "$_aj_script" ]]; then
+    source "$_aj_script"
+    export _AUTOJUMP_LOADED=1
+  fi
 fi
 
 # ---------------------------------------------------------------------------
