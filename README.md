@@ -123,6 +123,6 @@ chezmoi init --apply --prompt
 
 ## 🗺️ Roadmap
 - [ ] Rendre compatible avec Linux
-- [ ] Faire gérer les clés privées SSH par une Yubikey
-- [ ] Faire gérer la clé AGE par une Yubikey
 - [ ] Faire gérer la clé GPG par une Yubikey
+- [ ] Faire gérer la clé AGE par une Yubikey (on peut pas utiliser PGP ?)
+- [ ] Faire passer toutes mes clés SSH en Clés hérités des mes identtités PGP
