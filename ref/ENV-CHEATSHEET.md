@@ -34,6 +34,8 @@
 | `glow` | Rendu Markdown dans le terminal |
 | `tldr` | Pages de man simplifiées |
 | `gh` | GitHub CLI |
+| `jq` | Manipulation de JSON |
+| `eza` | `ls` moderne avec plus d'infos et de couleurs |
 
 
 ## Vim _(Leader : `Espace`)_

@@ -11,8 +11,6 @@
 # Zsh
 - [ ] alias vim = v
 
-# Tmux
-
 # Fenêtrage
 Yabai  / skhd ou autre
 
@@ -30,6 +28,5 @@ Yabai  / skhd ou autre
 - cookiecutter
 - bpytop
 - htop
-- jq
 - eza
 - python
