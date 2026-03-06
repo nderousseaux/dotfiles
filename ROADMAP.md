@@ -26,6 +26,4 @@ Yabai  / skhd ou autre
 - tlmgr and his extension
 - pipx
 - cookiecutter
-- bpytop
-- htop
 - python

@@ -17,6 +17,7 @@ brew "autojump"
 brew "jq"
 brew "eza"
 brew "htop"
+brew "bpytop"
 
 # Git
 brew "git"

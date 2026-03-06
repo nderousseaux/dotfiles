@@ -40,6 +40,8 @@
 | `gh` | GitHub CLI |
 | `jq` | Manipulation de JSON |
 | `eza` | `ls` moderne — alias : `es` `el` `ea` `et` (voir Alias Zsh) |
+| `htop` | `top` amélioré |
+| `bpytop` | `htop` en Python, avec plus de fonctionnalités |
 
 
 ## Vim _(Leader : `Espace`)_
