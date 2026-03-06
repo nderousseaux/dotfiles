@@ -1,10 +1,43 @@
 # ~/.zshrc — Configuration interactive de Zsh
 
 # ---------------------------------------------------------------------------
-# tmux — lancement automatique (invisible)
+# tmux — lancement automatique (une session par fenêtre terminal)
 # ---------------------------------------------------------------------------
+# Comportement :
+#   - Chaque nouvelle fenêtre terminal crée une nouvelle session tmux.
+#   - Fermer la fenêtre (quelle que soit la méthode) tue la session.
+#   - Détacher manuellement (C-b d) laisse la session vivante.
+#   - Un processus gardien surveille ce shell ; dès qu'il meurt, il tue la
+#     session tmux associée — pas de dépendance à SIGHUP.
 if command -v tmux &>/dev/null && [[ -z "$TMUX" ]] && [[ $- == *i* ]]; then
-  exec tmux new-session
+  _TMUX_SESSION="win-$$"
+  _TMUX_SHELL_PID=$$
+
+  # Gardien en arrière-plan : immune à SIGHUP, surveille le shell parent.
+  # Dès que ce shell disparaît → tue la session.
+  (
+    trap '' HUP
+    while kill -0 "$_TMUX_SHELL_PID" 2>/dev/null; do
+      sleep 1
+    done
+    tmux kill-session -t "$_TMUX_SESSION" 2>/dev/null
+  ) &!
+  _TMUX_WATCHER_PID=$!
+
+  # Lance tmux (bloquant jusqu'à détachement ou fermeture de toutes les fenêtres)
+  tmux new-session -s "$_TMUX_SESSION"
+
+  if tmux has-session -t "$_TMUX_SESSION" 2>/dev/null; then
+    # Session toujours vivante → détachement volontaire → annuler le gardien
+    kill "$_TMUX_WATCHER_PID" 2>/dev/null
+  else
+    # Toutes les fenêtres tmux fermées → fermer le terminal aussi
+    kill "$_TMUX_WATCHER_PID" 2>/dev/null
+    unset _TMUX_SESSION _TMUX_SHELL_PID _TMUX_WATCHER_PID
+    exit 0
+  fi
+
+  unset _TMUX_SESSION _TMUX_SHELL_PID _TMUX_WATCHER_PID
 fi
 
 # ---------------------------------------------------------------------------

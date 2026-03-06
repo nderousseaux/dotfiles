@@ -28,5 +28,4 @@ Yabai  / skhd ou autre
 - cookiecutter
 - bpytop
 - htop
-- eza
 - python
