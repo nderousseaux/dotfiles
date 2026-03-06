@@ -26,6 +26,8 @@
 | `Ctrl+R` | Historique |
 | `?` | Toggle aperçu |
 
+Certains  dossiers sont exclus de la recherche (ex: `node_modules`, `dist`, `build`, `.git`) pour de meilleures performances.
+
 > `fd` remplace `find` automatiquement.
 
 
