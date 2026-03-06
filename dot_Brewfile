@@ -16,6 +16,7 @@ brew "tldr"
 brew "autojump"
 brew "jq"
 brew "eza"
+brew "htop"
 
 # Git
 brew "git"
