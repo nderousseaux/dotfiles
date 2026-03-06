@@ -16,6 +16,7 @@
 | `..` / `...` | `cd ..` / `cd ../..` |
 | `j <query>` | Aller dans un dossier visité (autojump) |
 | `bssh` | SSH via bastion avec keepalive |
+| `v` | `vim` |
 
 ### fzf
 

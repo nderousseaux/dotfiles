@@ -1,6 +1,5 @@
 # Générique
 - [ ] Rendre compatible avec Linux
-- [ ] exclure node module et autre de fzf
 
 # VSCode
 - [ ] Configurer

@@ -9,7 +9,7 @@
 #   - Détacher manuellement (C-b d) laisse la session vivante.
 #   - Un processus gardien surveille ce shell ; dès qu'il meurt, il tue la
 #     session tmux associée — pas de dépendance à SIGHUP.
-if command -v tmux &>/dev/null && [[ -z "$TMUX" ]] && [[ $- == *i* ]]; then
+if command -v tmux &>/dev/null && [[ -z "$TMUX" ]] && [[ $- == *i* ]] && [[ "$TERM_PROGRAM" != "vscode" ]]; then
   _TMUX_SESSION="win-$$"
   _TMUX_SHELL_PID=$$
 
@@ -124,6 +124,7 @@ if command -v eza &>/dev/null; then
 fi
 alias ..='cd ..'
 alias ...='cd ../..'
+alias v='vim'
 
 # Alias spéciaux
 alias bssh='ssh -o ServerAliveInterval=10 -o ServerAliveCountMax=3 -t bastion --'
