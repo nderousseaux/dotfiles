@@ -16,11 +16,12 @@ Police : `JetBrains Mono` · Thème : `Catppuccin Frappé`
 - Git
 - Tmux (chargé par défaut, invisible, prefix `C-b`)
 - VSCode (uniquement installé, configuré par le compte GitHub)'
+- Typora
+- Wireshark
 
 **Structure mise en place :**
 - Un dossier `~/ref/` sera crée, contenant [`ENV-CHEATSHEET.md`](./ref/ENV-CHEATSHEET.md), document de référence pour la configuration.
 - Un dossier `~/dev/` sera crée, pour y regrouper tous les projets de développement.
-
 
 **Scripts automatiques :**
 - `.setup-age.sh` — prépare le binaire `age` et la clé de déchiffrement avant le déploiement

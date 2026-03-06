@@ -34,3 +34,5 @@ cask "caffeine"
 
 # Applications
 cask "visual-studio-code"
+cask "typora"
+cask "wireshark"

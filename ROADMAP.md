@@ -4,14 +4,6 @@
 # VSCode
 - [ ] COMMENT IGNORER DES FICHIERS DE COPILOT
 
-# Fenêtrage
-Yabai  / skhd ou autre
-
-# PGP
-- [ ] Mettre en place PGP
-- [ ] Faire gérer la clé AGE par une Yubikey (on peut pas utiliser PGP ?)
-- [ ] Faire passer toutes mes clés SSH en Clés hérités des mes identtités PGP
-
 # Autres outils
 - colima
 - docker
