@@ -9,6 +9,10 @@
 | Alias | → |
 |---|---|
 | `ll` / `la` | `ls -lh` / `ls -lah` |
+| `es` | `eza` simple (icônes, dossiers en premier) |
+| `el` | `eza -l` (liste longue, dates relatives) |
+| `ea` | `eza -la` (tout, statut git, icônes) |
+| `et` | `eza -la -T` (arborescence, statut git) |
 | `..` / `...` | `cd ..` / `cd ../..` |
 | `j <query>` | Aller dans un dossier visité (autojump) |
 | `bssh` | SSH via bastion avec keepalive |
@@ -35,7 +39,7 @@
 | `tldr` | Pages de man simplifiées |
 | `gh` | GitHub CLI |
 | `jq` | Manipulation de JSON |
-| `eza` | `ls` moderne avec plus d'infos et de couleurs |
+| `eza` | `ls` moderne — alias : `es` `el` `ea` `et` (voir Alias Zsh) |
 
 
 ## Vim _(Leader : `Espace`)_
