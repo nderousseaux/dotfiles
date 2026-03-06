@@ -2,13 +2,7 @@
 - [ ] Rendre compatible avec Linux
 
 # VSCode
-- [ ] Configurer
-- [ ] Onglets pour plusieurs workspaces ?
-- [ ] La commande `code` marche pas
 - [ ] COMMENT IGNORER DES FICHIERS DE COPILOT
-
-# Zsh
-- [ ] alias vim = v
 
 # Fenêtrage
 Yabai  / skhd ou autre

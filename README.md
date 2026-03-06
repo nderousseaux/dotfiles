@@ -15,6 +15,7 @@ Police : `JetBrains Mono` · Thème : `Catppuccin Frappé`
 - Ghostty
 - Git
 - Tmux (chargé par défaut, invisible, prefix `C-b`)
+- VSCode (uniquement installé, configuré par le compte GitHub)'
 
 **Structure mise en place :**
 - Un dossier `~/ref/` sera crée, contenant [`ENV-CHEATSHEET.md`](./ref/ENV-CHEATSHEET.md), document de référence pour la configuration.

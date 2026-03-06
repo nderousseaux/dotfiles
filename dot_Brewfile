@@ -31,3 +31,6 @@ brew "age"
 cask "ghostty"
 cask "font-jetbrains-mono"
 cask "caffeine"
+
+# Applications
+cask "visual-studio-code"
