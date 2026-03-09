@@ -1,5 +1,5 @@
 # VSCode
-- vscode .settings
+- [x] vscode .settings
 - [ ] COMMENT IGNORER DES FICHIERS DE COPILOT
 
 # Petites améliorations

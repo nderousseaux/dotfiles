@@ -1,0 +1,47 @@
+#!/bin/bash
+# Installe les extensions VS Code définies dans ~/.config/vscode/extensions
+# hash: {{ include "dot_config/vscode/extensions" | sha256sum }}
+
+{{ if eq .chezmoi.os "linux" "darwin" -}}
+
+EXTENSIONS_FILE="$HOME/.config/vscode/extensions"
+
+if ! command -v code &>/dev/null; then
+  echo "⏭️  VS Code (code) non trouvé, extensions ignorées."
+  exit 0
+fi
+
+if [[ ! -f "$EXTENSIONS_FILE" ]]; then
+  echo "⏭️  Fichier d'extensions introuvable ($EXTENSIONS_FILE)."
+  exit 0
+fi
+
+echo "🧩 Synchronisation des extensions VS Code..."
+
+# Extensions actuellement installées
+installed=$(code --list-extensions | sort)
+
+# Extensions souhaitées
+wanted=$(sort < "$EXTENSIONS_FILE")
+
+# Installer les extensions manquantes
+while IFS= read -r ext; do
+  [[ -z "$ext" ]] && continue
+  if ! echo "$installed" | grep -qix "$ext"; then
+    echo "  ➕ Installation de $ext..."
+    code --install-extension "$ext" --force 2>/dev/null
+  fi
+done <<< "$wanted"
+
+# Désinstaller les extensions non listées
+while IFS= read -r ext; do
+  [[ -z "$ext" ]] && continue
+  if ! echo "$wanted" | grep -qix "$ext"; then
+    echo "  ➖ Suppression de $ext..."
+    code --uninstall-extension "$ext" 2>/dev/null
+  fi
+done <<< "$installed"
+
+echo "✅ Extensions VS Code synchronisées"
+
+{{ end -}}

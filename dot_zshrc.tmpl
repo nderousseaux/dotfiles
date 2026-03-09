@@ -122,6 +122,19 @@ bindkey '^x^e' edit-command-line
 ssh() { TERM=xterm-256color command ssh "$@" }
 
 # ---------------------------------------------------------------------------
+# chezmoi — wrapper pour régénérer les fichiers dynamiques avant re-add
+# ---------------------------------------------------------------------------
+chezmoi() {
+  if [[ "$1" == "re-add" ]]; then
+    # Met à jour la liste des extensions VS Code avant le re-add
+    if command -v code &>/dev/null; then
+      code --list-extensions | sort > ~/.config/vscode/extensions 2>/dev/null
+    fi
+  fi
+  command chezmoi "$@"
+}
+
+# ---------------------------------------------------------------------------
 # Alias
 # ---------------------------------------------------------------------------
 alias ls='ls --color=auto'

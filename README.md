@@ -18,7 +18,7 @@ Police : `JetBrains Mono` · Thème : `Catppuccin Frappé`
 - Git
 - Tmux (chargé par défaut, invisible, prefix `C-b`)
 - GH CLI (avec GH Dash)
-- VSCode (uniquement installé, configuré par le compte GitHub)'
+- VSCode (settings + extensions synchronisées)
 - Typora
 - Wireshark
 
@@ -33,6 +33,7 @@ Police : `JetBrains Mono` · Thème : `Catppuccin Frappé`
 - `run_onchange_after_brew-bundle.sh` — exécute `brew bundle` à chaque modification du Brewfile
 - `run_after_cleanup-age.sh` — nettoie les binaires age/chezmoi temporaires après déploiement
 - `run_onchange_before_install-oh-my-zsh.sh.tmp` — installe Oh My Zsh avant le déploiement
+- `run_onchange_after_vscode-extensions.sh` — installe/supprime les extensions VS Code à chaque modification de la liste
 
 > Les clés privées SSH (`~/.ssh/rsa_keys/priv/`) sont **exclues du repo** et doivent être copiées manuellement.
 
@@ -90,6 +91,10 @@ chezmoi apply
 
 # Rattraper une modification manuelle
 chezmoi re-add ~/.fichier
+
+# Mettre à jour la liste des extensions VS Code dans le repo
+# (le wrapper shell régénère automatiquement la liste avant le re-add)
+chezmoi re-add ~/.config/vscode/extensions
 
 # Commit et push
 chezmoi git add . && chezmoi git commit && chezmoi git push
