@@ -15,6 +15,7 @@ Police : `JetBrains Mono` · Thème : `Catppuccin Frappé`
 - Ghostty
 - Git
 - Tmux (chargé par défaut, invisible, prefix `C-b`)
+- GH CLI (avec GH Dash)
 - VSCode (uniquement installé, configuré par le compte GitHub)'
 - Typora
 - Wireshark

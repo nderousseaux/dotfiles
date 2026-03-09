@@ -5,7 +5,7 @@
 # ---------------------------------------------------------------------------
 theme = Catppuccin Frappe
 
-font-family = JetBrains Mono
+font-family = JetBrainsMono Nerd Font
 font-size = 13
 
 window-padding-x = 8

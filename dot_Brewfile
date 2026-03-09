@@ -29,7 +29,7 @@ brew "age"
 
 # Terminal
 cask "ghostty"
-cask "font-jetbrains-mono"
+cask "font-jetbrains-mono-nerd-font"
 cask "caffeine"
 
 # Applications

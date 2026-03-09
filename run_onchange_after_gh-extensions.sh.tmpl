@@ -1,0 +1,25 @@
+#!/bin/bash
+# Installe les extensions gh CLI
+# hash: {{ include "dot_Brewfile" | sha256sum }}
+
+{{ if eq .chezmoi.os "linux" "darwin" -}}
+
+if ! command -v gh &>/dev/null; then
+  echo "⏭️  gh CLI non trouvé, extensions ignorées."
+  exit 0
+fi
+
+echo "🔌 Installation des extensions gh..."
+
+# gh-dash — tableau de bord GitHub dans le terminal
+if ! gh extension list | grep -q 'dlvhdr/gh-dash'; then
+  gh extension install dlvhdr/gh-dash
+  echo "  ✅ gh-dash installé"
+else
+  gh extension upgrade dlvhdr/gh-dash 2>/dev/null
+  echo "  ✅ gh-dash déjà installé (mis à jour)"
+fi
+
+echo "✅ Extensions gh configurées"
+
+{{ end -}}
