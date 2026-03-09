@@ -25,6 +25,7 @@
 | `Ctrl+T` | Fichiers (aperçu `bat`) |
 | `Alt+C` | Dossiers (aperçu `tree`) |
 | `Ctrl+R` | Historique |
+| `cmd foo**<tab>` | Auto-complétion avec aperçu |
 | `?` | Toggle aperçu |
 
 Certains  dossiers sont exclus de la recherche (ex: `node_modules`, `dist`, `build`, `.git`) pour de meilleures performances.
