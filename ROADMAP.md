@@ -2,6 +2,10 @@
 - vscode .settings
 - [ ] COMMENT IGNORER DES FICHIERS DE COPILOT
 
+# Petites améliorations
+Nouveau pane tmux -> même ddossier ET même session SSH
+
+
 # Autres outils
 - colima
 - docker
