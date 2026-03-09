@@ -5,3 +5,8 @@ ROADMAP.md
 # decrypt_private désactivé : on ignore tout .ssh/
 .ssh/
 {{ end }}
+
+{{ if ne .chezmoi.os "darwin" }}
+# macOS uniquement
+.hushlogin
+{{ end }}

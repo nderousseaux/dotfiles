@@ -1,0 +1,41 @@
+#!/bin/bash
+# Installe les dépendances système sur Debian/Ubuntu (prérequis pour Homebrew et le reste)
+
+{{ if eq .chezmoi.os "linux" -}}
+
+if [ -f /etc/debian_version ]; then
+  echo "🐧 Détection Debian/Ubuntu — installation des prérequis système..."
+
+  _apt_packages=(
+    build-essential
+    curl
+    file
+    git
+    procps
+    zsh
+  )
+
+  _to_install=()
+  for pkg in "${_apt_packages[@]}"; do
+    if ! dpkg -s "$pkg" &>/dev/null; then
+      _to_install+=("$pkg")
+    fi
+  done
+
+  if [ ${#_to_install[@]} -gt 0 ]; then
+    echo "📦 Installation : ${_to_install[*]}"
+    sudo apt-get update -qq
+    sudo apt-get install -y -qq "${_to_install[@]}"
+    echo "✅ Prérequis système installés"
+  else
+    echo "✅ Prérequis système déjà présents"
+  fi
+
+  # Passer le shell par défaut à zsh si ce n'est pas déjà le cas
+  if [ "$SHELL" != "$(command -v zsh)" ]; then
+    echo "🔄 Changement du shell par défaut → zsh"
+    sudo chsh -s "$(command -v zsh)" "$USER" || true
+  fi
+fi
+
+{{ end -}}

@@ -1,6 +1,6 @@
 #!/bin/bash
 # Installe les paquets définis dans ~/.Brewfile
-# hash: {{ include "dot_Brewfile" | sha256sum }}
+# hash: {{ include "dot_Brewfile.tmpl" | sha256sum }}
 
 {{ if eq .chezmoi.os "linux" "darwin" -}}
 

@@ -1,8 +1,10 @@
 # Dotfiles
 
-## 📋 About
+## � About
 
 Configuration de mon environnement de développement — versionnée et réplicable, gérée avec [chezmoi](https://chezmoi.io/), et chiffrée avec [age](https://age-encryption.org/) pour les fichiers sensibles (clés SSH, etc).
+
+**Plateformes supportées :** macOS · Debian/Ubuntu
 
 Police : `JetBrains Mono` · Thème : `Catppuccin Frappé`
 
@@ -26,6 +28,7 @@ Police : `JetBrains Mono` · Thème : `Catppuccin Frappé`
 
 **Scripts automatiques :**
 - `.setup-age.sh` — prépare le binaire `age` et la clé de déchiffrement avant le déploiement
+- `run_onchange_before_install-debian-deps.sh` — installe les prérequis système via `apt` (Debian/Ubuntu uniquement)
 - `run_onchange_before_install-homebrew.sh` — installe Homebrew avant le déploiement
 - `run_onchange_after_brew-bundle.sh` — exécute `brew bundle` à chaque modification du Brewfile
 - `run_after_cleanup-age.sh` — nettoie les binaires age/chezmoi temporaires après déploiement
@@ -42,6 +45,11 @@ Police : `JetBrains Mono` · Thème : `Catppuccin Frappé`
 > xcode-select --install && sudo xcodebuild -license
 > ```
 
+> **Debian/Ubuntu** : S'assurer que `curl` et `git` sont disponibles :
+> ```bash
+> sudo apt-get update && sudo apt-get install -y curl git
+> ```
+
 ```bash
 sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/bin init --apply nderousseaux
 ```
@@ -54,9 +62,10 @@ Déroulement automatique :
 1. chezmoi s'installe dans `~/bin/`
 2. Le repo est cloné dans `~/.local/share/chezmoi/`
 3. Si déchiffrement activé : `age` est installé et tous les fichiers privés sont déchiffrés (~/.ssh/ et autres)
-4. Homebrew est installé
-5. Les dotfiles sont déployés
-6. `brew bundle` installe tous les paquets
+4. *(Debian/Ubuntu)* Les prérequis système sont installés via `apt` (build-essential, zsh…)
+5. Homebrew est installé
+6. Les dotfiles sont déployés
+7. `brew bundle` installe tous les paquets (les casks GUI ne sont installés que sur macOS)
 
 ### Opérations courantes
 

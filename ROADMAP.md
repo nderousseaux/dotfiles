@@ -1,6 +1,3 @@
-# Générique
-- [ ] Rendre compatible avec Linux
-
 # VSCode
 - vscode .settings
 - [ ] COMMENT IGNORER DES FICHIERS DE COPILOT

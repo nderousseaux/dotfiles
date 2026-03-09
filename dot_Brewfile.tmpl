@@ -27,12 +27,14 @@ brew "gh"
 # Chiffrement (requis pour déchiffrer ~/.ssh/)
 brew "age"
 
-# Terminal
+{{ if eq .chezmoi.os "darwin" -}}
+# Terminal (macOS uniquement)
 cask "ghostty"
 cask "font-jetbrains-mono-nerd-font"
 cask "caffeine"
 
-# Applications
+# Applications (macOS uniquement)
 cask "visual-studio-code"
 cask "typora"
 cask "wireshark"
+{{ end -}}

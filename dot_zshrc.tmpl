@@ -45,6 +45,20 @@ fi
 # ---------------------------------------------------------------------------
 export PATH="$HOME/bin:$PATH"
 
+# Homebrew — détection et activation (macOS et Linux)
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -x /usr/local/bin/brew ]]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+elif [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
+# Préfixe Homebrew (utilisé pour sourcer les plugins)
+if command -v brew &>/dev/null; then
+  _BREW_PREFIX="$(brew --prefix)"
+fi
+
 # ---------------------------------------------------------------------------
 # Éditeur
 # ---------------------------------------------------------------------------
@@ -134,13 +148,16 @@ alias dpda="docker run --rm --volume "$PWD":/mnt --workdir /mnt -u 1000:1000 -i 
 # autojump — navigation rapide par historique
 # ---------------------------------------------------------------------------
 if command -v autojump &>/dev/null; then
-  _aj_script="$(brew --prefix)/etc/profile.d/autojump.sh"
+  # Cherche le script d'init : Homebrew puis /usr/share (apt)
+  _aj_script=""
+  [[ -n "${_BREW_PREFIX:-}" && -f "$_BREW_PREFIX/etc/profile.d/autojump.sh" ]] && _aj_script="$_BREW_PREFIX/etc/profile.d/autojump.sh"
+  [[ -z "$_aj_script" && -f /usr/share/autojump/autojump.sh ]] && _aj_script="/usr/share/autojump/autojump.sh"
 
   # Évite les conflits au rechargement du shell
   unalias j 2>/dev/null
 
   # Charge autojump une seule fois
-  if [[ -z "${_AUTOJUMP_LOADED:-}" && -f "$_aj_script" ]]; then
+  if [[ -z "${_AUTOJUMP_LOADED:-}" && -n "$_aj_script" && -f "$_aj_script" ]]; then
     source "$_aj_script"
     export _AUTOJUMP_LOADED=1
   fi
@@ -149,8 +166,11 @@ fi
 # ---------------------------------------------------------------------------
 # zsh-autosuggestions — suggestions à la frappe (style fish)
 # ---------------------------------------------------------------------------
-_zas_script="$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-if [[ -f "$_zas_script" ]]; then
+# Cherche le script : Homebrew puis /usr/share (apt)
+_zas_script=""
+[[ -n "${_BREW_PREFIX:-}" && -f "$_BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] && _zas_script="$_BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+[[ -z "$_zas_script" && -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && _zas_script="/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+if [[ -n "$_zas_script" && -f "$_zas_script" ]]; then
   source "$_zas_script"
   ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"       # Gris discret
   ZSH_AUTOSUGGEST_STRATEGY=(history completion) # Historique puis complétion
@@ -219,5 +239,8 @@ fi
 # ---------------------------------------------------------------------------
 # zsh-syntax-highlighting — coloration syntaxique (doit être sourcé en dernier)
 # ---------------------------------------------------------------------------
-_zsh_hl="$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-[[ -f "$_zsh_hl" ]] && source "$_zsh_hl"
+# Cherche le script : Homebrew puis /usr/share (apt)
+_zsh_hl=""
+[[ -n "${_BREW_PREFIX:-}" && -f "$_BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && _zsh_hl="$_BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+[[ -z "$_zsh_hl" && -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && _zsh_hl="/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+[[ -n "$_zsh_hl" && -f "$_zsh_hl" ]] && source "$_zsh_hl"
