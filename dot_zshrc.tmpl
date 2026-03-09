@@ -165,12 +165,12 @@ if command -v fzf &>/dev/null; then
   # Intégration shell (key bindings + complétion fuzzy)
   source <(fzf --zsh)
 
-  # Options par défaut
+  # Options par défaut (plein écran, style full)
   export FZF_DEFAULT_OPTS="\
-    --height=40% \
-    --layout=reverse \
+    --style=full \
     --border \
     --info=inline \
+    --bind 'focus:transform-header:file --brief {}' \
     --bind='?:toggle-preview'"
 
   # Utiliser fd si disponible pour un listing plus rapide
@@ -192,8 +192,8 @@ if command -v fzf &>/dev/null; then
       --exclude vendor
       --exclude coverage
     )
-    export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow ${_fzf_excludes[*]}"
-    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+    export FZF_DEFAULT_COMMAND="fd --hidden --follow ${_fzf_excludes[*]}"
+    export FZF_CTRL_T_COMMAND="fd --hidden --follow ${_fzf_excludes[*]}"
     export FZF_ALT_C_COMMAND="fd --type d --hidden --follow ${_fzf_excludes[*]}"
   fi
 
@@ -208,8 +208,12 @@ if command -v fzf &>/dev/null; then
   else
     _fzf_dir_preview='ls -la {}'
   fi
-  export FZF_CTRL_T_OPTS="--preview '[ -d {} ] && ${_fzf_dir_preview} || ${_fzf_file_preview}'"
-  export FZF_ALT_C_OPTS="--preview '${_fzf_dir_preview}'"
+  # Preview par défaut (visible, toggle avec ?)
+  export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} --preview '[ -d {} ] && ${_fzf_dir_preview} || ${_fzf_file_preview}'"
+
+  export FZF_CTRL_R_OPTS="--layout=reverse --bind 'focus:transform-header:'"
+  export FZF_CTRL_T_OPTS="--layout=reverse --height=40% --preview '[ -d {} ] && ${_fzf_dir_preview} || ${_fzf_file_preview}'"
+  export FZF_ALT_C_OPTS="--layout=reverse --height=40% --bind 'focus:transform-header:' --preview '${_fzf_dir_preview}'"
 fi
 
 # ---------------------------------------------------------------------------
